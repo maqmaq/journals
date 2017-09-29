@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="Journals" default="build">
+    <target name="build">
+        <echo msg="use -l option to list available commands" />
+    </target>
+    <target name="docker:up">
+        <exec executable="docker-compose" passthru="true" checkreturn="true">
+            <arg line="-f docker-compose.yml"/>
+            <arg line="up -d"/>
+        </exec>
+    </target>
+    <target name="docker:start">
+        <exec executable="docker-compose" passthru="true" checkreturn="true">
+            <arg line="-f docker-compose.yml"/>
+            <arg line="start"/>
+        </exec>
+    </target>
+    <target name="docker:stop">
+        <exec executable="docker-compose" passthru="true" checkreturn="true">
+            <arg line="-f docker-compose.yml"/>
+            <arg line="stop"/>
+        </exec>
+    </target>
+    <target name="docker:rm">
+        <exec executable="docker-compose" passthru="true" checkreturn="true">
+            <arg line="-f docker-compose.yml"/>
+            <arg line="rm -f"/>
+        </exec>
+    </target>
+    <target name="docker:build">
+        <exec executable="docker-compose" passthru="true" checkreturn="true">
+            <arg line="-f docker-compose.yml"/>
+            <arg line="build"/>
+        </exec>
+    </target>
+    <target name="update-dev"
+            depends="composer-dev"
+            description="Update dev version">
+    </target>
+    <target name="composer-dev" description="Installing dependencies with dev">
+        <exec executable="php" passthru="true" checkreturn="true">
+            <arg value="composer.phar"/>
+            <arg value="install"/>
+            <arg value="--prefer-dist"/>
+            <arg value="--no-progress"/>
+        </exec>
+    </target>
+</project>
