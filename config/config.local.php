@@ -4,8 +4,13 @@ $config = [
     'db' => [
         'some' => 'parameter'
     ],
-//    'env' => 'dev'
+    'env' => 'dev',
+    'twig' => [
+        'environment' => [
 
+
+        ],
+    ],
 ];
 
 return $config;

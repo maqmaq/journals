@@ -2,6 +2,8 @@
 
 namespace Core\Container;
 
+use Psr\Container\ContainerInterface;
+
 /**
  * Interface ContainerAwareInterface
  */
@@ -9,13 +11,13 @@ interface ContainerAwareInterface
 {
 
     /**
-     * @param \Psr\Container\ContainerInterface $container
+     * @param ContainerInterface $container
      * @return mixed
      */
-    public function setContainer(\Psr\Container\ContainerInterface $container);
+    public function setContainer(ContainerInterface $container);
 
     /**
-     * @return \Psr\Container\ContainerInterface
+     * @return ContainerInterface
      */
     public function getContainer();
 

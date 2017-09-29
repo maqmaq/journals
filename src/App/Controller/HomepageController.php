@@ -1,6 +1,7 @@
 <?php
 
-namespace  App\Controller;
+namespace App\Controller;
+
 use Core\Controller\ControllerAbstract;
 
 /**
@@ -8,8 +9,15 @@ use Core\Controller\ControllerAbstract;
  */
 class HomepageController extends ControllerAbstract
 {
-    public function indexAction() {
-        return 'some response';
+    public function indexAction()
+    {
+
+        $context = [
+            'first' => 'f',
+            'second' => 's'
+        ];
+        return $this->render('Homepage/index.html.twig', $context);
+
     }
 
 }

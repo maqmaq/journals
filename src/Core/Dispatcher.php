@@ -3,6 +3,7 @@
 
 namespace Core;
 
+use Core\Service\ControllerInitializer;
 use Psr\Container\ContainerInterface;
 use QuimCalpe\Router\Dispatcher\DispatcherInterface;
 use QuimCalpe\Router\Route\ParsedRoute;
@@ -14,20 +15,23 @@ use RuntimeException;
  */
 class Dispatcher implements DispatcherInterface
 {
-    const DEFAULT_ACTION = 'indexAction';
-
     /**
-     * @var ContainerInterface
+     * Default action
      */
-    private $container;
+    const DEFAULT_ACTION = 'indexAction';
+    /**
+     * @var ControllerInitializer
+     */
+    private $controllerInitializer;
+
 
     /**
      * Dispatcher constructor.
-     * @param ContainerInterface $container
+     * @param ControllerInitializer $controllerInitializer
      */
-    public function __construct(ContainerInterface $container)
+    public function __construct(ControllerInitializer $controllerInitializer)
     {
-        $this->container = $container;
+        $this->controllerInitializer = $controllerInitializer;
     }
 
 
@@ -59,6 +63,6 @@ class Dispatcher implements DispatcherInterface
      */
     protected function getControllerInstance($controllerClassName)
     {
-        return $this->container->get($controllerClassName);
+        return $this->controllerInitializer->initialize($controllerClassName);
     }
 }

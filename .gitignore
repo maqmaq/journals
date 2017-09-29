@@ -1,3 +1,5 @@
 .idea
 vendor/*
 config/config.local.php
+cache/twig*
+!cache/twig/.gitkeep

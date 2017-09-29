@@ -4,6 +4,7 @@
 namespace Core\Controller;
 
 use Core\Container\ContainerAwareInterface;
+use Core\Renderable\RenderableAwareInterface;
 use DI\Definition\Definition;
 use Psr\Container\ContainerInterface;
 
@@ -22,9 +23,16 @@ class ControllerFactory
     {
         $controllerClassName = $definition->getName();
         /** @var ControllerAbstract $controllerInstance */
+
+        $renderable = $container->get('core_view');
+
         $controllerInstance = new $controllerClassName();
         if ($controllerInstance instanceof ContainerAwareInterface) {
             $controllerInstance->setContainer($container);
+        }
+
+        if ($controllerInstance instanceof RenderableAwareInterface) {
+            $controllerInstance->setRenderable($renderable);
         }
 
         return $controllerInstance;

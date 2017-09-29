@@ -5,6 +5,8 @@ ini_set('display_errors', 1);
 
 define('ROOT', dirname(__FILE__) . DIRECTORY_SEPARATOR);
 define('CONFIG_DIR', ROOT . '../config' . DIRECTORY_SEPARATOR);
+define('CACHE_DIR', ROOT . '../cache' . DIRECTORY_SEPARATOR);
+define('SRC_DIR', ROOT . '../src' . DIRECTORY_SEPARATOR);
 
 define('ENV_DEV', 'dev');
 define('ENV_PROD', 'prod');
@@ -27,7 +29,7 @@ if (file_exists($localAppConfigPath)) {
 }
 
 $containerBuilder = new DI\ContainerBuilder();
-$containerBuilder->addDefinitions(CONFIG_DIR . 'di.php');
+$containerBuilder->addDefinitions($appConfig['di']);
 $container = $containerBuilder->build();
 
 

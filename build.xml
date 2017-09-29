@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="Journals" default="build">
     <target name="build">
-        <echo msg="use -l option to list available commands" />
+        <echo msg="use -l option to list available commands"/>
     </target>
     <target name="docker:up">
         <exec executable="docker-compose" passthru="true" checkreturn="true">
@@ -34,8 +34,15 @@
         </exec>
     </target>
     <target name="update-dev"
-            depends="composer-dev"
+            depends="app:setup,composer-dev"
             description="Update dev version">
+    </target>
+    <target name="app:setup">
+        <chmod file="cache/twig" mode="0777">
+            <fileset dir="cache/twig">
+                <exclude name=".gitkeep/"/>
+            </fileset>
+        </chmod>
     </target>
     <target name="composer-dev" description="Installing dependencies with dev">
         <exec executable="php" passthru="true" checkreturn="true">
