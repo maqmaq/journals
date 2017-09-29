@@ -1,5 +1,16 @@
 {
     "name": "maqmaq/journals",
     "type": "project",
-    "require": {}
+    "require": {
+        "php": "^7.0",
+        "kanellov/config-merge": "^0.1.1",
+        "quimcalpe/router": "^1.2",
+        "php-di/php-di": "^5.4"
+    },
+    "autoload": {
+        "psr-4": {
+            "": "src/"
+        }
+    }
+
 }
