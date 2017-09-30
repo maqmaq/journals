@@ -8,6 +8,12 @@ namespace Article\Purchase;
  */
 class Status
 {
+
+    /**
+     * Authentication is required to purchase
+     */
+    const STATUS_AUTHENTICATION_REQUIRED = 'authentication_required';
+
     /*
      * Article is already purchased
      */
@@ -16,7 +22,7 @@ class Status
     /**
      * User has not enough funds to purchase article
      */
-    const STATUS_NOT_ENOUGH_FUNDS = 'not_enought_funds';
+    const STATUS_NOT_ENOUGH_FUNDS = 'not_enough_funds';
 
     /**
      * Article purchased successfully, user grant access
@@ -26,7 +32,6 @@ class Status
      * Error during purchasing
      */
     const STATUS_PURCHASE_SUCCESS = 'purchase_success';
-
 
 
 }

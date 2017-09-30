@@ -5,6 +5,7 @@ namespace User\Controller;
 
 
 use Core\Controller\ControllerAbstract;
+use User\Interactor\User\GetList;
 
 class UserController extends ControllerAbstract
 {

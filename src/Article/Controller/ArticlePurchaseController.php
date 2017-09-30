@@ -39,15 +39,25 @@ class ArticlePurchaseController extends ControllerAbstract
             throw new ObjectNotFoundException();
         }
 
-        /** @var Article $article */
-        /** @var UserAccessManagerInterface $articleContentAccessManager */
-        $articleContentAccessManager = $this->getContainer()->get('article_access_manager_article_content_by_user');
-
         $template = 'Article/Purchase/show.html.twig';
 
         $context = [
             'article' => $article
         ];
+
+        /** @var AuthenticatorInterface $authenticator */
+        $authenticator = $this->getContainer()->get('core_authentication_service');
+        if (!$authenticator->hasIdentity()) {
+            return $this->render($template, array_merge($context, [
+                'status' => Status::STATUS_AUTHENTICATION_REQUIRED
+            ]));
+        }
+
+        /** @var Article $article */
+        /** @var UserAccessManagerInterface $articleContentAccessManager */
+        $articleContentAccessManager = $this->getContainer()->get('article_access_manager_article_content_by_user');
+
+
 
         // user already purchased article
         if ($articleContentAccessManager->can($article)) {
@@ -56,7 +66,7 @@ class ArticlePurchaseController extends ControllerAbstract
             ]));
         }
 
-        // user has not enought funds to purchase
+        // user has not enough funds to purchase
         $articlePurchaseAccessManager = $this->getContainer()->get('article_access_manager_enough_funds_to_purchase_article_by_user');
         if (!$articlePurchaseAccessManager->can($article)) {
             return $this->render($template, array_merge($context, [
@@ -64,8 +74,6 @@ class ArticlePurchaseController extends ControllerAbstract
             ]));
         }
 
-        /** @var AuthenticatorInterface $authenticator */
-        $authenticator = $this->getContainer()->get('core_authentication_service');
         $user = $authenticator->getIdentity();
 
         // purchase for current user

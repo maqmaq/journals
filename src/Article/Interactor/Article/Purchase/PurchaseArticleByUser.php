@@ -48,7 +48,7 @@ class PurchaseArticleByUser
                 return false;
             }
 
-            $updateUserStatus = $user->update(array('wallet' => $this->getCurrentFundBallance($user->getWallet(), $article->getPrice())));
+            $updateUserStatus = $user->update(array('wallet' => $this->getCurrentFundBalance($user->getWallet(), $article->getPrice())));
 
             if ($updateUserStatus->error) {
                 $this->userRepository->rollback();
@@ -70,7 +70,7 @@ class PurchaseArticleByUser
      * @param $price
      * @return string
      */
-    protected function getCurrentFundBallance($oldBalance, $price)
+    protected function getCurrentFundBalance($oldBalance, $price)
     {
         return bcsub($oldBalance, $price, 2);
     }

@@ -16,7 +16,7 @@ trait RenderableAwareTrait
     protected $renderable;
 
     /**
-     * @param RenderableInterface $renderer
+     * @param RenderableInterface $renderable
      */
     public function setRenderable(RenderableInterface $renderable)
     {

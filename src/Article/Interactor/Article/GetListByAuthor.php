@@ -10,6 +10,7 @@ class GetListByAuthor
 {
 
     /**
+     * @param Author $author
      * @return array
      */
     public function execute(Author $author)

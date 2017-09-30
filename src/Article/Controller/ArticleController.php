@@ -34,6 +34,7 @@ class ArticleController extends ControllerAbstract
     /**
      * @param array $params
      * @return string
+     * @throws ObjectNotFoundException
      */
     public function showAction($params)
     {

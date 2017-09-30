@@ -32,7 +32,7 @@ abstract class ControllerAbstract implements ContainerAwareInterface, Renderable
      */
     public function redirectToRoute(string $routeName, array $routeParams = [])
     {
-        // becouse my request cannot into redirects
+        // because my request cannot into redirects
 
         $url = sprintf('%s', $routeName);
 

@@ -4,7 +4,6 @@
 namespace Core;
 
 use Core\Service\ControllerInitializer;
-use Psr\Container\ContainerInterface;
 use QuimCalpe\Router\Dispatcher\DispatcherInterface;
 use QuimCalpe\Router\Route\ParsedRoute;
 use RuntimeException;

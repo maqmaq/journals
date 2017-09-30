@@ -6,7 +6,9 @@
     </div>
 
     <div>
-        {% if status is constant('Article\\Purchase\\Status::STATUS_ALREADY_PURCHASED') %}
+        {% if status is constant('Article\\Purchase\\Status::STATUS_AUTHENTICATION_REQUIRED') %}
+            <span>Please log in to purchase</span>
+        {% elseif status is constant('Article\\Purchase\\Status::STATUS_ALREADY_PURCHASED') %}
             <span>You have already purchased article</span>
         {% elseif status is constant('Article\\Purchase\\Status::STATUS_NOT_ENOUGH_FUNDS') %}
             <span>You have not enough funds to purchase this article</span>

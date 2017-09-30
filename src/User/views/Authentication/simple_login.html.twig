@@ -1,0 +1,14 @@
+{% extends "Template/layout.html.twig" %}
+
+{% block content %}
+
+    <div>
+        {% if status is constant('Core\\Authentication\\AuthenticationStatus::STATUS_ALREADY_AUTHENTICATED') %}
+            <span>You are already logged in</span>
+        {% elseif status is constant('Core\\Authentication\\AuthenticationStatus::STATUS_AUTHENTICATION_SUCCESSFUL') %}
+            <span>You have logged in successfully</span>
+        {% elseif status is constant('Core\\Authentication\\AuthenticationStatus::STATUS_AUTHENTICATION_FAILED') %}
+            <span>Log in failed! Please try again later</span>
+        {% endif %}
+    </div>
+{% endblock %}

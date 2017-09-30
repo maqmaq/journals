@@ -1,6 +1,8 @@
 <?php
 
 namespace Core\Container;
+use Psr\Container\ContainerInterface;
+
 /**
  * Class ContainerAwareTrait
  */
@@ -8,22 +10,22 @@ trait ContainerAwareTrait
 {
 
     /**
-     * @var \Psr\Container\ContainerInterface
+     * @var ContainerInterface
      */
     protected $container;
 
     /**
-     * @return \Psr\Container\ContainerInterface
+     * @return ContainerInterface
      */
-    public function getContainer(): \Psr\Container\ContainerInterface
+    public function getContainer(): ContainerInterface
     {
         return $this->container;
     }
 
     /**
-     * @param \Psr\Container\ContainerInterface $container
+     * @param ContainerInterface $container
      */
-    public function setContainer(\Psr\Container\ContainerInterface $container)
+    public function setContainer(ContainerInterface $container)
     {
         $this->container = $container;
     }

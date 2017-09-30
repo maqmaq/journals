@@ -3,9 +3,10 @@
 namespace Article\Security;
 
 use Article\Model\Article;
+use Core\Security\UserVoterAbstract;
 use User\Model\User;
 
-class AccessArticleContentByUserVoter extends \Core\Security\UserVoterAbstract
+class AccessArticleContentByUserVoter extends UserVoterAbstract
 {
     /**
      * View content for user attributes

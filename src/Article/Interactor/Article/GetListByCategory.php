@@ -9,6 +9,7 @@ class GetListByCategory
 {
 
     /**
+     * @param Category $category
      * @return array
      */
     public function execute(Category $category)

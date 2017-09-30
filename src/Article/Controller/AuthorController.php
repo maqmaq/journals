@@ -35,6 +35,7 @@ class AuthorController extends ControllerAbstract
      * Index action
      * @param $params
      * @return string
+     * @throws ObjectNotFoundException
      */
     public function showAction($params)
     {

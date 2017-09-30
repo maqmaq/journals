@@ -3,13 +3,14 @@
 namespace Article\Security;
 
 use Article\Model\Article;
+use Core\Security\UserVoterAbstract;
 use User\Model\User;
 
 /**
  * Class EnoughFundsToPurchaseArticleByUser
  * @package Article\Security
  */
-class EnoughFundsToPurchaseArticleByUser extends \Core\Security\UserVoterAbstract
+class EnoughFundsToPurchaseArticleByUser extends UserVoterAbstract
 {
     /**
      * Enough funds in user's wallet to purchase
@@ -46,7 +47,7 @@ class EnoughFundsToPurchaseArticleByUser extends \Core\Security\UserVoterAbstrac
 
         /** @var Article $subject */
 
-        // check if amount in users wallet is greater than article's prive
+        // check if amount in users wallet is greater than article's price
         $price = $subject->getPrice();
         $userFunds = $user->getWallet();
 

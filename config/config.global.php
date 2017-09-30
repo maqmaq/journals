@@ -23,12 +23,16 @@ $config = [
             'debug' => true,
         ],
         'loader' => [
-            'template_dir' => [
-                // @todo refactor array into anonymous function?
-                sprintf('%s%s%sviews', SRC_DIR, 'Article', DIRECTORY_SEPARATOR),
-                sprintf('%s%s%sviews', SRC_DIR, 'App', DIRECTORY_SEPARATOR),
-                sprintf('%s%s%sviews', SRC_DIR, 'User', DIRECTORY_SEPARATOR)
-            ]
+            'template_dir' => (function ($arrayOfModules) {
+                return array_map(function ($module) {
+                    return sprintf('%s%s%sviews', SRC_DIR, $module, DIRECTORY_SEPARATOR);
+
+                }, $arrayOfModules);
+            })([
+                'Article',
+                'App',
+                'User'
+            ])
         ]
     ],
     'routes' => [
@@ -94,6 +98,12 @@ $config = [
         ],
         [
             'GET',
+            '/users/login/{id:number}',
+            'User\Controller\AuthenticationController::simpleLoginAction',
+            'user_authentication_simple_login'
+        ],
+        [
+            'GET',
             '/users/list',
             'User\Controller\UserController::listAction',
             'user_list'
@@ -103,10 +113,6 @@ $config = [
 
 
 $createAccessManager = function ($voters, $attributes, ContainerInterface $c) {
-    // @todo need to refactor
-    // di cannot pass to factory parameter that has been resolved
-    // so create factory manualy
-
     /** @var UserAccessManagerFactory $factory */
     $factory = $c->get('core_user_access_manager_factory');
 
@@ -124,8 +130,10 @@ $config['di'] =
         'core_router' => object(\Core\Router::class),
         'core_dispatcher' => object(\Core\Dispatcher::class)->constructor(get('core_service_controller_initializer')),
         'core_view' => object(\Core\View::class)->constructor(get('twig_environment')),
-        'core_session_storage' => object(\Symfony\Component\HttpFoundation\Session\Session::class),
-        'core_authentication_service' => object(\Core\Authentication\AuthentizationService::class)->constructor(get('core_session_storage')),
+        'core_session' => object(\Core\Session::class),
+        'core_token_user_token_storage' => object(\Core\Token\UserTokenStorage::class)->constructor(get('user_repository')),
+        'core_authentication_manager' => object(Core\Authentication\Manager\AuthenticationManager::class)->constructor(get('core_session')),
+        'core_authentication_service' => object(\Core\Authentication\AuthorizationService::class)->constructor(get('core_authentication_manager'), get('core_token_user_token_storage')),
         'core_service_controller_initializer' => function (ContainerInterface $c) {
             // pass container to dispatcher
             return new \Core\Service\ControllerInitializer($c);
@@ -182,6 +190,7 @@ $config['di'] =
         // user
         'user_repository' => DI\factory([\User\Model\User::class, 'masterRepo']),
         'user_interactor_get_list' => object(\User\Interactor\User\GetList::class)->constructor(get('user_repository')),
+        'user_interactor_get_by_id' => object(\User\Interactor\User\GetById::class)->constructor(get('user_repository')),
 
     ];
 

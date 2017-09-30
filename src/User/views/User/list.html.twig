@@ -8,16 +8,16 @@
                     {# @todo generate url using some view helper #}
                     <dl>
                         <dt>Id</dt>
-                        <dl>{{ user.getId() }}</dl>
+                        <dd>{{ user.getId() }}</dd>
                         <dt>Username</dt>
-                        <dl>{{ user.getUsername() }}</dl>
+                        <dd>{{ user.getUsername() }}</dd>
                         <dt>Wallet</dt>
-                        <dl>{{ user.getWallet() }}</dl>
+                        <dd>{{ user.getWallet() }}</dd>
 
                         <dt>Actions</dt>
-                        <dl>
+                        <dd>
                             <a href="{{ "/users/login/%s"|format(user.getId()) }}">login as {{ user.getUsername() }}</a>
-                        </dl>
+                        </dd>
                     </dl>
                 </li>
             {% endfor %}

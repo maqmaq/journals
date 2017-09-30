@@ -2,6 +2,7 @@
 
 namespace Core\Service;
 
+use Core\Container\ContainerAwareInterface;
 use Core\Container\ContainerAwareTrait;
 use Core\Controller\ControllerAbstract;
 use Psr\Container\ContainerInterface;
@@ -10,7 +11,7 @@ use Psr\Container\ContainerInterface;
  * Class ControllerInitializer
  * @package Core\Service
  */
-class ControllerInitializer implements \Core\Container\ContainerAwareInterface
+class ControllerInitializer implements ContainerAwareInterface
 {
     use ContainerAwareTrait;
 

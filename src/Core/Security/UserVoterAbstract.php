@@ -33,14 +33,14 @@ abstract class UserVoterAbstract
     }
 
     /**
-     * @param $object
+     * @param $subject
      * @param string $attribute
      * @return bool
      */
     abstract function supports($subject, string $attribute):bool;
 
     /**
-     * @param $object
+     * @param $subject
      * @param string $attribute
      * @param User $user
      * @return bool

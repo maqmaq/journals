@@ -11,6 +11,7 @@ use QuimCalpe\Router\Exception\RouteNotFoundException;
 use RuntimeException;
 use Maghead\Runtime\Config\FileConfigLoader;
 use Maghead\Runtime\Bootstrap;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 /**
  * Class Application
@@ -57,10 +58,11 @@ class Application
         $this->initRouter();
         $this->initDispatcher();
         $this->initDatabase();
+        $this->initSession();
     }
 
     /**
-     * Initialized env
+     * Initializes env
      */
     protected function initEnvironment()
     {
@@ -90,14 +92,24 @@ class Application
      */
     protected function initDatabase()
     {
-
         $config = FileConfigLoader::load($this->config['db']['config']['file']);
         Bootstrap::setup($config);  // true -> prepare connection only
     }
 
+    /**
+     * Initializes session
+     */
+    protected function initSession() {
+        /** @var SessionInterface $session */
+        $session = $this->container->get('core_session');
+        if (!$session->isStarted()) {
+            $session->start();
+        }
+    }
+
 
     /**
-     * Runs applictation
+     * Runs application
      */
     public function run()
     {

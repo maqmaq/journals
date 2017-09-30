@@ -11,7 +11,6 @@ use Core\Router\RouterInterface;
  */
 class Router extends \QuimCalpe\Router\Router implements RouterInterface
 {
-
     /**
      * Position of attribute name in route config
      */
@@ -19,8 +18,9 @@ class Router extends \QuimCalpe\Router\Router implements RouterInterface
 
     /**
      * @param array $routes
+     * @return void
      */
-    public function loadRoutes(array $routes)
+    public function loadRoutes(array $routes): void
     {
         foreach ($routes as $route) {
 
@@ -30,6 +30,5 @@ class Router extends \QuimCalpe\Router\Router implements RouterInterface
 
             $this->addRoute($method, $uri, $handler, $name);
         }
-
     }
 }
