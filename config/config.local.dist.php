@@ -1,10 +1,7 @@
 <?php
 
 $config = [
-    'db' => [
-        'example' => 'parameter'
-    ],
-    'env' => ENV_DEV
+    'env' => 'dev',
 ];
 
 return $config;

@@ -10,11 +10,13 @@ class ArticleSchema extends DeclareSchema
     {
         $this->column('title')
             ->varchar(128)
-            ->label('title')
+            ->required()
+            ->label('Title')
         ;
 
         $this->column('shortDescription')
             ->varchar(255)
+            ->required()
             ->label('Short description')
         ;
 
@@ -27,5 +29,18 @@ class ArticleSchema extends DeclareSchema
             ->decimal(10, 2)
             ->label('Price')
         ;
+
+        /**
+         * accessor , mapping self.id => ArticleAuthor.article_id
+         *
+         * link article => author_articles
+         */
+        $this->many('article_authors', ArticleAuthor::class, 'article_id', 'id');
+
+        $this->manyToMany('authors', 'article_authors', 'author')
+            ->filter(function ($collection) {
+                return $collection;
+            });
     }
+
 }

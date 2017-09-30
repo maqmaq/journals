@@ -1,0 +1,35 @@
+{% extends "Template/layout.html.twig" %}
+
+{% block content %}
+
+    <dl>
+        <dt>Id</dt>
+        <dd>{{ author.getId() }}</dd>
+
+        <dt>First name</dt>
+        <dd>{{ author.getFirstName() }}</dd>
+
+        <dt>Last name</dt>
+        <dd>{{ author.getLastName() }}</dd>
+
+        <dt>About</dt>
+        <dd>{{ author.getAbout() }}</dd>
+
+        <dt>Articles</dt>
+        <dd>
+            {% if articles|length %}
+                <ul>
+                    {% for article in articles %}
+                        <li>
+                            {# @todo generate url using some view helper #}
+                            <a href="{{ "/articles/show/%s"|format(article.getId()) }}">{{ article.getTitle() }}</a></li>
+                    {% endfor %}
+                </ul>
+
+            {% else %}
+                List is empty
+            {% endif %}
+        </dd>
+
+    </dl>
+{% endblock %}

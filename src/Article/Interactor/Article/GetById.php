@@ -1,14 +1,15 @@
 <?php
 
-namespace Article\Interactor;
+
+namespace Article\Interactor\Article;
 
 use Maghead\Runtime\Repo;
 
 /**
- * Class GetList
- * @package Article\Interactor
+ * Class GetById
+ * @package Article\Interactors\Article
  */
-class GetList
+class GetById
 {
 
     /**
@@ -26,12 +27,11 @@ class GetList
     }
 
     /**
-     * @return array
+     * @param $idArticle
+     * @return mixed
      */
-    public function execute()
+    public function execute($idArticle)
     {
-        return $this->repository->collection()->selectAll();
+        return $this->repository->findByPrimaryKey($idArticle);
     }
-
-
 }

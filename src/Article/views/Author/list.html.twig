@@ -1,12 +1,12 @@
 {% extends "Template/layout.html.twig" %}
 
 {% block content %}
-    {% if articles|length %}
+    {% if authors|length %}
         <ul>
-            {% for article in articles %}
+            {% for author in authors %}
                 <li>
                     {# @todo generate url using some view helper #}
-                    <a href="{{ "/articles/show/%s"|format(article.getId()) }}">{{ article.getTitle() }}</a></li>
+                    <a href="{{ "/authors/show/%s"|format(author.getId()) }}">{{ author.getFirstName() }} {{ author.getLastName() }}</a></li>
             {% endfor %}
         </ul>
 

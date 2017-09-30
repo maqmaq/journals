@@ -7,7 +7,7 @@ use function DI\get;
 $config = [
     'db' => [
         'config' => [
-            'file' =>  CONFIG_DIR . '/db/database.yml'
+            'file' => CONFIG_DIR . '/db/database.yml'
         ]
     ],
     'env' => ENV_PROD,
@@ -38,13 +38,26 @@ $config = [
             '/articles/list',
             'Article\Controller\ArticleController::listAction',
             'article_list'
-        ],        [
+        ],
+        [
             'GET',
             '/articles/show/{id:number}',
             'Article\Controller\ArticleController::showAction',
             'article_show'
         ],
-
+        // authors
+        [
+            'GET',
+            '/authors/list',
+            'Article\Controller\AuthorController::listAction',
+            'author_list'
+        ],
+        [
+            'GET',
+            '/authors/show/{id:number}',
+            'Article\Controller\AuthorController::showAction',
+            'author_show'
+        ],
     ],
 ];
 
@@ -69,8 +82,14 @@ $config['di'] =
 
         // article
         'article_repository' => DI\factory([\Article\Model\Article::class, 'masterRepo']),
-        'article_interactor_get_list' => object(\Article\Interactor\GetList::class)->constructor(get('article_repository')),
-        'article_interactor_get_by_id' => object(\Article\Interactor\GetById::class)->constructor(get('article_repository'))
+        'article_interactor_get_list' => object(\Article\Interactor\Article\GetList::class)->constructor(get('article_repository')),
+        'article_interactor_get_by_id' => object(\Article\Interactor\Article\GetById::class)->constructor(get('article_repository')),
+        'article_interactor_get_list_by_author' => object(\Article\Interactor\Article\GetListByAuthor::class),
+
+        // author
+        'author_repository' => DI\factory([\Article\Model\Author::class, 'masterRepo']),
+        'author_interactor_get_list' => object(\Article\Interactor\Author\GetList::class)->constructor(get('author_repository')),
+        'author_interactor_get_by_id' => object(\Article\Interactor\Author\GetById::class)->constructor(get('author_repository')),
     ];
 
 return $config;

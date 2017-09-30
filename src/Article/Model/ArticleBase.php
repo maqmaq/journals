@@ -159,4 +159,37 @@ class ArticleBase
         $this->content = NULL;
         $this->price = NULL;
     }
+
+    public function fetchArticleAuthors()
+    {
+        return static::masterRepo()->fetchArticleAuthorsOf($this);
+    }
+
+    public function getArticleAuthors()
+    {
+        $collection = new \Article\Model\ArticleAuthorCollection;
+        $collection->where()->equal("article_id", $this->id);
+        $collection->setPresetVars([ "article_id" => $this->id ]);
+        return $collection;
+    }
+
+    public function getAuthors()
+    {
+        $collection = new \Article\Model\AuthorCollection;
+        $collection->joinTable('article_authors', 'j', 'INNER')
+           ->on("j.author_id = {$collection->getAlias()}.id");
+        $collection->where()->equal('j.article_id', $this->id);
+        $parent = $this;
+        $collection->setAfterCreate(function($record, $args) use ($parent) {
+           $a = [
+              'author_id' => $record->get("id"),
+              'article_id' => $parent->id,
+           ];
+           if (isset($args['article_authors'])) {
+              $a = array_merge($args['article_authors'], $a);
+           }
+           return \Article\Model\ArticleAuthor::createAndLoad($a);
+        });
+        return $collection;
+    }
 }

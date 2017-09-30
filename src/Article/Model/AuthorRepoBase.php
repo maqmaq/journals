@@ -13,19 +13,19 @@ use PDO;
 use Magsql\Universal\Query\InsertQuery;
 use Maghead\Runtime\Repo;
 
-class ArticleRepoBase
+class AuthorRepoBase
     extends Repo
 {
 
-    const SCHEMA_CLASS = 'Article\\Model\\ArticleSchema';
+    const SCHEMA_CLASS = 'Article\\Model\\AuthorSchema';
 
-    const SCHEMA_PROXY_CLASS = 'Article\\Model\\ArticleSchemaProxy';
+    const SCHEMA_PROXY_CLASS = 'Article\\Model\\AuthorSchemaProxy';
 
-    const COLLECTION_CLASS = 'Article\\Model\\ArticleCollection';
+    const COLLECTION_CLASS = 'Article\\Model\\AuthorCollection';
 
-    const MODEL_CLASS = 'Article\\Model\\Article';
+    const MODEL_CLASS = 'Article\\Model\\Author';
 
-    const TABLE = 'articles';
+    const TABLE = 'authors';
 
     const READ_SOURCE_ID = 'master';
 
@@ -35,36 +35,34 @@ class ArticleRepoBase
 
     const TABLE_ALIAS = 'm';
 
-    const FIND_BY_PRIMARY_KEY_SQL = 'SELECT * FROM articles WHERE id = ? LIMIT 1';
+    const FIND_BY_PRIMARY_KEY_SQL = 'SELECT * FROM authors WHERE id = ? LIMIT 1';
 
-    const DELETE_BY_PRIMARY_KEY_SQL = 'DELETE FROM articles WHERE id = ?';
+    const DELETE_BY_PRIMARY_KEY_SQL = 'DELETE FROM authors WHERE id = ?';
 
-    const FETCH_ARTICLE_AUTHORS_SQL = 'SELECT * FROM article_authors WHERE article_id = ?';
+    const FETCH_AUTHOR_ARTICLES_SQL = 'SELECT * FROM article_authors WHERE author_id = ?';
 
     public static $columnNames = array (
       0 => 'id',
-      1 => 'title',
-      2 => 'shortDescription',
-      3 => 'content',
-      4 => 'price',
+      1 => 'firstName',
+      2 => 'lastName',
+      3 => 'about',
     );
 
     public static $columnHash = array (
       'id' => 1,
-      'title' => 1,
-      'shortDescription' => 1,
-      'content' => 1,
-      'price' => 1,
+      'firstName' => 1,
+      'lastName' => 1,
+      'about' => 1,
     );
 
     public static $mixinClasses = array (
     );
 
-    protected $table = 'articles';
+    protected $table = 'authors';
 
     protected $loadStm;
 
-    protected $fetchArticleAuthorsStm;
+    protected $fetchAuthorArticlesStm;
 
     public function free()
     {
@@ -78,14 +76,14 @@ class ArticleRepoBase
         if ($schema) {
            return $schema;
         }
-        return $schema = new \Article\Model\ArticleSchemaProxy;
+        return $schema = new \Article\Model\AuthorSchemaProxy;
     }
 
     public function findByPrimaryKey($pkId)
     {
         if (!$this->loadStm) {
            $this->loadStm = $this->read->prepare(self::FIND_BY_PRIMARY_KEY_SQL);
-           $this->loadStm->setFetchMode(PDO::FETCH_CLASS, 'Article\Model\Article', [$this]);
+           $this->loadStm->setFetchMode(PDO::FETCH_CLASS, 'Article\Model\Author', [$this]);
         }
         $this->loadStm->execute([ $pkId ]);
         $obj = $this->loadStm->fetch();
@@ -95,7 +93,7 @@ class ArticleRepoBase
 
     public function collection()
     {
-        return new ArticleCollection($this);
+        return new AuthorCollection($this);
     }
 
     protected static function unsetImmutableArgs($args)
@@ -111,13 +109,13 @@ class ArticleRepoBase
         return $this->deleteStm->execute([$pkId]);
     }
 
-    public function fetchArticleAuthorsOf(Model $record)
+    public function fetchAuthorArticlesOf(Model $record)
     {
-        if (!$this->fetchArticleAuthorsStm) {
-            $this->fetchArticleAuthorsStm = $this->read->prepare(self::FETCH_ARTICLE_AUTHORS_SQL);
-            $this->fetchArticleAuthorsStm->setFetchMode(PDO::FETCH_CLASS, \Article\Model\ArticleAuthor::class, [$this]);
+        if (!$this->fetchAuthorArticlesStm) {
+            $this->fetchAuthorArticlesStm = $this->read->prepare(self::FETCH_AUTHOR_ARTICLES_SQL);
+            $this->fetchAuthorArticlesStm->setFetchMode(PDO::FETCH_CLASS, \Article\Model\ArticleAuthor::class, [$this]);
         }
-        $this->fetchArticleAuthorsStm->execute([$record->id]);
-        return $this->fetchArticleAuthorsStm->fetchAll();
+        $this->fetchAuthorArticlesStm->execute([$record->id]);
+        return $this->fetchAuthorArticlesStm->fetchAll();
     }
 }

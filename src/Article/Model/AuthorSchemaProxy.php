@@ -11,25 +11,25 @@ use Maghead\Schema\Relationship\HasMany;
 use Maghead\Schema\Relationship\BelongsTo;
 use Maghead\Schema\Relationship\ManyToMany;
 
-class ArticleSchemaProxy
+class AuthorSchemaProxy
     extends RuntimeSchema
 {
 
-    const SCHEMA_CLASS = 'Article\\Model\\ArticleSchema';
+    const SCHEMA_CLASS = 'Article\\Model\\AuthorSchema';
 
-    const LABEL = 'Article';
+    const LABEL = 'Author';
 
-    const MODEL_NAME = 'Article';
+    const MODEL_NAME = 'Author';
 
     const MODEL_NAMESPACE = 'Article\\Model';
 
-    const MODEL_CLASS = 'Article\\Model\\Article';
+    const MODEL_CLASS = 'Article\\Model\\Author';
 
-    const REPO_CLASS = 'Article\\Model\\ArticleRepoBase';
+    const REPO_CLASS = 'Article\\Model\\AuthorRepoBase';
 
-    const COLLECTION_CLASS = 'Article\\Model\\ArticleCollection';
+    const COLLECTION_CLASS = 'Article\\Model\\AuthorCollection';
 
-    const TABLE = 'articles';
+    const TABLE = 'authors';
 
     const PRIMARY_KEY = 'id';
 
@@ -39,10 +39,9 @@ class ArticleSchemaProxy
 
     public static $column_hash = array (
       'id' => 1,
-      'title' => 1,
-      'shortDescription' => 1,
-      'content' => 1,
-      'price' => 1,
+      'firstName' => 1,
+      'lastName' => 1,
+      'about' => 1,
     );
 
     public static $mixin_classes = array (
@@ -50,23 +49,21 @@ class ArticleSchemaProxy
 
     public $columnNames = array (
       0 => 'id',
-      1 => 'title',
-      2 => 'shortDescription',
-      3 => 'content',
-      4 => 'price',
+      1 => 'firstName',
+      2 => 'lastName',
+      3 => 'about',
     );
 
     public $primaryKey = 'id';
 
     public $columnNamesIncludeVirtual = array (
       0 => 'id',
-      1 => 'title',
-      2 => 'shortDescription',
-      3 => 'content',
-      4 => 'price',
+      1 => 'firstName',
+      2 => 'lastName',
+      3 => 'about',
     );
 
-    public $label = 'Article';
+    public $label = 'Author';
 
     public $readSourceId = 'master';
 
@@ -77,14 +74,14 @@ class ArticleSchemaProxy
     public function __construct()
     {
         $this->relations = array( 
-      'article_authors' => \Maghead\Schema\Relationship\HasMany::__set_state(array( 
+      'author_articles' => \Maghead\Schema\Relationship\HasMany::__set_state(array( 
       'data' => array( 
-          'self_schema' => 'Article\\Model\\ArticleSchema',
+          'self_schema' => 'Article\\Model\\AuthorSchema',
           'self_column' => 'id',
           'foreign_schema' => 'Article\\Model\\ArticleAuthorSchema',
-          'foreign_column' => 'article_id',
+          'foreign_column' => 'author_id',
         ),
-      'accessor' => 'article_authors',
+      'accessor' => 'author_articles',
       'where' => NULL,
       'orderBy' => array( 
         ),
@@ -92,15 +89,12 @@ class ArticleSchemaProxy
       'onDelete' => NULL,
       'usingIndex' => NULL,
     )),
-      'authors' => \Maghead\Schema\Relationship\ManyToMany::__set_state(array( 
+      'articles' => \Maghead\Schema\Relationship\ManyToMany::__set_state(array( 
       'data' => array( 
-          'relation_junction' => 'article_authors',
-          'relation_foreign' => 'author',
-          'filter' => function ($collection) {
-                    return $collection;
-                },
+          'relation_junction' => 'author_articles',
+          'relation_foreign' => 'article',
         ),
-      'accessor' => 'authors',
+      'accessor' => 'articles',
       'where' => NULL,
       'orderBy' => array( 
         ),
@@ -131,14 +125,14 @@ class ArticleSchemaProxy
       'widgetAttributes' => array( 
         ),
     ));
-        $this->columns[ 'title' ] = new RuntimeColumn('title',array( 
+        $this->columns[ 'firstName' ] = new RuntimeColumn('firstName',array( 
       'locales' => NULL,
       'attributes' => array( 
           'length' => 128,
           'required' => true,
-          'label' => 'Title',
+          'label' => 'First Name',
         ),
-      'name' => 'title',
+      'name' => 'firstName',
       'primary' => NULL,
       'unsigned' => NULL,
       'type' => 'varchar',
@@ -149,16 +143,16 @@ class ArticleSchemaProxy
       'onUpdate' => NULL,
       'length' => 128,
       'required' => true,
-      'label' => 'Title',
+      'label' => 'First Name',
     ));
-        $this->columns[ 'shortDescription' ] = new RuntimeColumn('shortDescription',array( 
+        $this->columns[ 'lastName' ] = new RuntimeColumn('lastName',array( 
       'locales' => NULL,
       'attributes' => array( 
-          'length' => 255,
+          'length' => 128,
           'required' => true,
-          'label' => 'Short description',
+          'label' => 'Last Name',
         ),
-      'name' => 'shortDescription',
+      'name' => 'lastName',
       'primary' => NULL,
       'unsigned' => NULL,
       'type' => 'varchar',
@@ -167,17 +161,17 @@ class ArticleSchemaProxy
       'enum' => NULL,
       'set' => NULL,
       'onUpdate' => NULL,
-      'length' => 255,
+      'length' => 128,
       'required' => true,
-      'label' => 'Short description',
+      'label' => 'Last Name',
     ));
-        $this->columns[ 'content' ] = new RuntimeColumn('content',array( 
+        $this->columns[ 'about' ] = new RuntimeColumn('about',array( 
       'locales' => NULL,
       'attributes' => array( 
           'length' => 1024,
-          'label' => 'Content',
+          'label' => 'about',
         ),
-      'name' => 'content',
+      'name' => 'about',
       'primary' => NULL,
       'unsigned' => NULL,
       'type' => 'varchar',
@@ -187,27 +181,7 @@ class ArticleSchemaProxy
       'set' => NULL,
       'onUpdate' => NULL,
       'length' => 1024,
-      'label' => 'Content',
-    ));
-        $this->columns[ 'price' ] = new RuntimeColumn('price',array( 
-      'locales' => NULL,
-      'attributes' => array( 
-          'length' => 10,
-          'decimals' => 2,
-          'label' => 'Price',
-        ),
-      'name' => 'price',
-      'primary' => NULL,
-      'unsigned' => NULL,
-      'type' => 'decimal',
-      'isa' => 'int',
-      'notNull' => NULL,
-      'enum' => NULL,
-      'set' => NULL,
-      'onUpdate' => NULL,
-      'length' => 10,
-      'decimals' => 2,
-      'label' => 'Price',
+      'label' => 'about',
     ));
     }
 }

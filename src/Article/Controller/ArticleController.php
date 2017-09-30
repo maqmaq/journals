@@ -2,8 +2,9 @@
 
 namespace Article\Controller;
 
+use Article\Interactor\Article\GetById;
 use Core\Controller\ControllerAbstract;
-use Article\Interactor\GetList;
+use Article\Interactor\Article\GetList;
 
 /**
  * Class ArticleController
@@ -35,6 +36,7 @@ class ArticleController extends ControllerAbstract
 
         $idArticle = $params['id'];
 
+        /** @var GetById $getByIdInteractor */
         $getByIdInteractor =  $this->getContainer()->get('article_interactor_get_by_id');
         $article =  $getByIdInteractor->execute($idArticle);
 
