@@ -1,11 +1,15 @@
 <?php
 
-use Core\Dispatcher;
 use function DI\object;
 use Psr\Container\ContainerInterface;
 use function DI\get;
 
 $config = [
+    'db' => [
+        'config' => [
+            'file' =>  CONFIG_DIR . '/db/database.yml'
+        ]
+    ],
     'env' => ENV_PROD,
     'twig' => [
         'environment' => [
@@ -15,24 +19,32 @@ $config = [
         ],
         'loader' => [
             'template_dir' => [
-                sprintf('%s%s%sviews', SRC_DIR, 'Journal', DIRECTORY_SEPARATOR),
+                sprintf('%s%s%sviews', SRC_DIR, 'Article', DIRECTORY_SEPARATOR),
                 sprintf('%s%s%sviews', SRC_DIR, 'App', DIRECTORY_SEPARATOR)
             ]
         ]
     ],
     'routes' => [
-        [
-            'GET',
-            '/journals',
-            'Journal\Controller\JournalController::listAction',
-            'journal_list'
-        ],
+        // app
         [
             'GET',
             '/',
             'App\Controller\HomepageController::indexAction',
             'homepage'
         ],
+        // articles
+        [
+            'GET',
+            '/articles/list',
+            'Article\Controller\ArticleController::listAction',
+            'article_list'
+        ],        [
+            'GET',
+            '/articles/show/{id:number}',
+            'Article\Controller\ArticleController::showAction',
+            'article_show'
+        ],
+
     ],
 ];
 
@@ -53,7 +65,12 @@ $config['di'] =
         'twig_environment' => object(Twig_Environment::class)->constructor(get('twig_loader'), $config['twig']['environment']),
 
         // app
-        'App\Controller\*Controller' => DI\factory([\Core\Controller\ControllerFactory::class, 'create']),
+        '*\Controller\*Controller' => DI\factory([\Core\Controller\ControllerFactory::class, 'create']),
+
+        // article
+        'article_repository' => DI\factory([\Article\Model\Article::class, 'masterRepo']),
+        'article_interactor_get_list' => object(\Article\Interactor\GetList::class)->constructor(get('article_repository')),
+        'article_interactor_get_by_id' => object(\Article\Interactor\GetById::class)->constructor(get('article_repository'))
     ];
 
 return $config;

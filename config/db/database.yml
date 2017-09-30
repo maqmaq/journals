@@ -1,0 +1,20 @@
+---
+cli:
+  bootstrap: vendor/autoload.php
+schema:
+  auto_id: 1
+  paths:
+    - src/Article/Model
+instance:
+  local:
+    driver: mysql
+    host: mysql
+    user: journals
+    pass: journals
+databases:
+  master:
+    driver: mysql
+    database: journals
+    host: mysql
+    user: journals
+    pass: journals

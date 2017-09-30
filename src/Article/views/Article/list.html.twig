@@ -1,0 +1,17 @@
+{% extends "Template/layout.html.twig" %}
+
+{% block content %}
+    {% if articles|length %}
+        <ul>
+            {% for article in articles %}
+                <li>
+                    <a href="{{ "/articles/show/%s"|format(article.getId()) }}">{{ article.getTitle() }}</a></li>
+            {% endfor %}
+        </ul>
+
+    {% else %}
+       List is empty
+    {% endif %}
+
+
+{% endblock %}

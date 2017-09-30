@@ -32,7 +32,6 @@ $containerBuilder = new DI\ContainerBuilder();
 $containerBuilder->addDefinitions($appConfig['di']);
 $container = $containerBuilder->build();
 
-
 // run application1
 $application = new \Core\Application($appConfig, $container);
 $application->init();

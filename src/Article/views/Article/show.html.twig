@@ -1,0 +1,21 @@
+{% extends "Template/layout.html.twig" %}
+
+{% block content %}
+
+    <dl>
+        <dt>Id</dt>
+        <dd>{{ article.getId() }}</dd>
+
+        <dt>Title</dt>
+        <dd>{{ article.getTitle() }}</dd>
+
+        <dt>Short description</dt>
+        <dd>{{ article.getShortDescription() }}</dd>
+
+        <dt>Content</dt>
+        <dd>{{ article.getContent() }}</dd>
+
+        <dt>Price</dt>
+        <dd>{{ article.getPrice() }}</dd>
+    </dl>
+{% endblock %}

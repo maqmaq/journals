@@ -8,6 +8,8 @@ use QuimCalpe\Router\Dispatcher\DispatcherInterface;
 use QuimCalpe\Router\Exception\MethodNotAllowedException;
 use QuimCalpe\Router\Exception\RouteNotFoundException;
 use RuntimeException;
+use Maghead\Runtime\Config\FileConfigLoader;
+use Maghead\Runtime\Bootstrap;
 
 /**
  * Class Application
@@ -22,7 +24,7 @@ class Application
     /**
      * @var ContainerInterface
      */
-    protected $containerInterface;
+    protected $container;
 
     /**
      * @var RouterInterface
@@ -42,7 +44,7 @@ class Application
     public function __construct(array $config, ContainerInterface $containerInterface)
     {
         $this->config = $config;
-        $this->containerInterface = $containerInterface;
+        $this->container = $containerInterface;
     }
 
     /**
@@ -53,6 +55,7 @@ class Application
         $this->initEnvironment();
         $this->initRouter();
         $this->initDispatcher();
+        $this->initDatabase();
     }
 
     /**
@@ -60,7 +63,7 @@ class Application
      */
     protected function initEnvironment()
     {
-        ini_set('display_errors', $this->config['env'] !== ENV_DEV);
+        ini_set('display_errors', $this->config['env'] !== ENV_PROD);
         ini_set('error_reporting', E_ALL);
     }
 
@@ -69,7 +72,7 @@ class Application
      */
     protected function initRouter()
     {
-        $this->router = $this->containerInterface->get('core_router');
+        $this->router = $this->container->get('core_router');
         $this->router->loadRoutes($this->config['routes']);
     }
 
@@ -78,8 +81,19 @@ class Application
      */
     protected function initDispatcher()
     {
-        $this->dispatcher = $this->containerInterface->get('core_dispatcher');
+        $this->dispatcher = $this->container->get('core_dispatcher');
     }
+
+    /**
+     * Initializes database
+     */
+    protected function initDatabase() {
+
+        $config = FileConfigLoader::load($this->config['db']['config']['file']);
+        Bootstrap::setup($config);  // true -> prepare connection only
+    }
+
+
 
     /**
      * Runs applictation

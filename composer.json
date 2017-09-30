@@ -1,12 +1,14 @@
 {
     "name": "maqmaq/journals",
     "type": "project",
+    "minimum-stability" : "dev",
     "require": {
         "php": "^7.0",
         "kanellov/config-merge": "^0.1.1",
         "quimcalpe/router": "^1.2",
         "php-di/php-di": "^5.4",
-        "twig/twig": "^2.0"
+        "twig/twig": "^2.0",
+        "maghead/maghead": "4.0.x-dev"
     },
     "autoload": {
         "psr-4": {
