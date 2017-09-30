@@ -6,6 +6,10 @@ namespace Article\Interactor;
 use Maghead\Runtime\Model;
 use Maghead\Runtime\Repo;
 
+/**
+ * Class GetByIdTrait
+ * @package Article\Interactor
+ */
 trait GetByIdTrait
 {
     /**

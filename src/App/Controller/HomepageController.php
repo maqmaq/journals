@@ -9,13 +9,13 @@ use Core\Controller\ControllerAbstract;
  */
 class HomepageController extends ControllerAbstract
 {
+    /**
+     * Index action
+     * @return string
+     */
     public function indexAction()
     {
-        $context = [
-            'first' => 'f',
-            'second' => 's'
-        ];
-        return $this->render('Homepage/index.html.twig', $context);
+        return $this->render('Homepage/index.html.twig', []);
     }
 
 }

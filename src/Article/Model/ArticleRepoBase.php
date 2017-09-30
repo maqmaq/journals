@@ -43,6 +43,8 @@ class ArticleRepoBase
 
     const FETCH_CATEGORY_SQL = 'SELECT * FROM categories WHERE id = ? LIMIT 1';
 
+    const FETCH_ARTICLE_PURCHASERS_SQL = 'SELECT * FROM article_purchasers WHERE article_id = ?';
+
     public static $columnNames = array (
       0 => 'id',
       1 => 'title',
@@ -71,6 +73,8 @@ class ArticleRepoBase
     protected $fetchArticleAuthorsStm;
 
     protected $fetchCategoryStm;
+
+    protected $fetchArticlePurchasersStm;
 
     public function free()
     {
@@ -137,5 +141,15 @@ class ArticleRepoBase
         $obj = $this->fetchCategoryStm->fetch();
         $this->fetchCategoryStm->closeCursor();
         return $obj;
+    }
+
+    public function fetchArticlePurchasersOf(Model $record)
+    {
+        if (!$this->fetchArticlePurchasersStm) {
+            $this->fetchArticlePurchasersStm = $this->read->prepare(self::FETCH_ARTICLE_PURCHASERS_SQL);
+            $this->fetchArticlePurchasersStm->setFetchMode(PDO::FETCH_CLASS, \Article\Model\ArticlePurchaser::class, [$this]);
+        }
+        $this->fetchArticlePurchasersStm->execute([$record->id]);
+        return $this->fetchArticlePurchasersStm->fetchAll();
     }
 }

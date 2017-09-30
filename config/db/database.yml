@@ -5,6 +5,8 @@ schema:
   auto_id: 1
   paths:
     - src/Article/Model
+    - src/App/Model
+    - src/User/Model
 instance:
   local:
     driver: mysql

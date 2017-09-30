@@ -132,7 +132,7 @@ class ArticleBase
 
     public function getPrice()
     {
-        return intval($this->price);
+        return Inflator::inflate($this->price, 'double');
     }
 
     public function getCategoryId()
@@ -206,5 +206,38 @@ class ArticleBase
     public function fetchCategory()
     {
         return static::masterRepo()->fetchCategoryOf($this);
+    }
+
+    public function fetchArticlePurchasers()
+    {
+        return static::masterRepo()->fetchArticlePurchasersOf($this);
+    }
+
+    public function getArticlePurchasers()
+    {
+        $collection = new \Article\Model\ArticlePurchaserCollection;
+        $collection->where()->equal("article_id", $this->id);
+        $collection->setPresetVars([ "article_id" => $this->id ]);
+        return $collection;
+    }
+
+    public function getPurchasers()
+    {
+        $collection = new \User\Model\UserCollection;
+        $collection->joinTable('article_purchasers', 'j', 'INNER')
+           ->on("j.user_id = {$collection->getAlias()}.id");
+        $collection->where()->equal('j.article_id', $this->id);
+        $parent = $this;
+        $collection->setAfterCreate(function($record, $args) use ($parent) {
+           $a = [
+              'user_id' => $record->get("id"),
+              'article_id' => $parent->id,
+           ];
+           if (isset($args['article_purchasers'])) {
+              $a = array_merge($args['article_purchasers'], $a);
+           }
+           return \Article\Model\ArticlePurchaser::createAndLoad($a);
+        });
+        return $collection;
     }
 }

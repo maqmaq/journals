@@ -1,0 +1,29 @@
+{% extends "Template/layout.html.twig" %}
+
+{% block content %}
+    {% if users|length %}
+        <ul>
+            {% for user in users %}
+                <li>
+                    {# @todo generate url using some view helper #}
+                    <dl>
+                        <dt>Id</dt>
+                        <dl>{{ user.getId() }}</dl>
+                        <dt>Username</dt>
+                        <dl>{{ user.getUsername() }}</dl>
+                        <dt>Wallet</dt>
+                        <dl>{{ user.getWallet() }}</dl>
+
+                        <dt>Actions</dt>
+                        <dl>
+                            <a href="{{ "/users/login/%s"|format(user.getId()) }}">login as {{ user.getUsername() }}</a>
+                        </dl>
+                    </dl>
+                </li>
+            {% endfor %}
+        </ul>    {% else %}
+        List is empty
+    {% endif %}
+
+
+{% endblock %}

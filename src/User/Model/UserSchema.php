@@ -1,9 +1,15 @@
 <?php
 
-namespace App\Model;
+namespace User\Model;
 
+use Article\Model\ArticlePurchaserSchema;
 use Maghead\Schema\DeclareSchema;
 
+/**
+ * @todo should extend core user
+ * Class UserSchema
+ * @package App\Model
+ */
 class UserSchema extends DeclareSchema
 {
     public function schema()
@@ -20,12 +26,18 @@ class UserSchema extends DeclareSchema
 
         $this->column('salt')
             ->varchar(32)
+            ->required()
             ->label('Salt');
 
         $this->column('wallet')
-            ->decimal(10, 2)
+            ->double(10, 2)
+            ->required()
+            ->unsigned()
+            ->default(0)
             ->label('Wallet');
 
+        $this->many('user_articles', ArticlePurchaserSchema::class, 'user_id', 'id');
+        $this->manyToMany('articles', 'user_articles', 'article');
     }
 
 }

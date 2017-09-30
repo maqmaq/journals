@@ -13,7 +13,13 @@
         <dd>{{ article.getShortDescription() }}</dd>
 
         <dt>Content</dt>
-        <dd>{{ article.getContent() }}</dd>
+        <dd>
+            {% if canUserAccessArticleContent %}
+            {{ article.getContent() }}
+                {% else %}
+                    Purchase to read full version of this article. Click <a title="here" href="{{ "/articles/purchase/%s"|format(article.getId()) }}">here</a>.
+            {% endif %}
+        </dd>
 
         <dt>Price</dt>
         <dd>{{ article.getPrice() }}</dd>

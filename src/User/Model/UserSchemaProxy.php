@@ -1,6 +1,6 @@
 <?php
 
-namespace Article\Model;
+namespace User\Model;
 
 
 use Maghead\Schema\RuntimeSchema;
@@ -11,25 +11,25 @@ use Maghead\Schema\Relationship\HasMany;
 use Maghead\Schema\Relationship\BelongsTo;
 use Maghead\Schema\Relationship\ManyToMany;
 
-class AuthorSchemaProxy
+class UserSchemaProxy
     extends RuntimeSchema
 {
 
-    const SCHEMA_CLASS = 'Article\\Model\\AuthorSchema';
+    const SCHEMA_CLASS = 'User\\Model\\UserSchema';
 
-    const LABEL = 'Author';
+    const LABEL = 'User';
 
-    const MODEL_NAME = 'Author';
+    const MODEL_NAME = 'User';
 
-    const MODEL_NAMESPACE = 'Article\\Model';
+    const MODEL_NAMESPACE = 'User\\Model';
 
-    const MODEL_CLASS = 'Article\\Model\\Author';
+    const MODEL_CLASS = 'User\\Model\\User';
 
-    const REPO_CLASS = 'Article\\Model\\AuthorRepoBase';
+    const REPO_CLASS = 'User\\Model\\UserRepoBase';
 
-    const COLLECTION_CLASS = 'Article\\Model\\AuthorCollection';
+    const COLLECTION_CLASS = 'User\\Model\\UserCollection';
 
-    const TABLE = 'authors';
+    const TABLE = 'users';
 
     const PRIMARY_KEY = 'id';
 
@@ -39,9 +39,10 @@ class AuthorSchemaProxy
 
     public static $column_hash = array (
       'id' => 1,
-      'first_name' => 1,
-      'last_name' => 1,
-      'about' => 1,
+      'username' => 1,
+      'password' => 1,
+      'salt' => 1,
+      'wallet' => 1,
     );
 
     public static $mixin_classes = array (
@@ -49,21 +50,23 @@ class AuthorSchemaProxy
 
     public $columnNames = array (
       0 => 'id',
-      1 => 'first_name',
-      2 => 'last_name',
-      3 => 'about',
+      1 => 'username',
+      2 => 'password',
+      3 => 'salt',
+      4 => 'wallet',
     );
 
     public $primaryKey = 'id';
 
     public $columnNamesIncludeVirtual = array (
       0 => 'id',
-      1 => 'first_name',
-      2 => 'last_name',
-      3 => 'about',
+      1 => 'username',
+      2 => 'password',
+      3 => 'salt',
+      4 => 'wallet',
     );
 
-    public $label = 'Author';
+    public $label = 'User';
 
     public $readSourceId = 'master';
 
@@ -74,14 +77,14 @@ class AuthorSchemaProxy
     public function __construct()
     {
         $this->relations = array( 
-      'author_articles' => \Maghead\Schema\Relationship\HasMany::__set_state(array( 
+      'user_articles' => \Maghead\Schema\Relationship\HasMany::__set_state(array( 
       'data' => array( 
-          'self_schema' => 'Article\\Model\\AuthorSchema',
+          'self_schema' => 'User\\Model\\UserSchema',
           'self_column' => 'id',
-          'foreign_schema' => 'Article\\Model\\ArticleAuthorSchema',
-          'foreign_column' => 'author_id',
+          'foreign_schema' => 'Article\\Model\\ArticlePurchaserSchema',
+          'foreign_column' => 'user_id',
         ),
-      'accessor' => 'author_articles',
+      'accessor' => 'user_articles',
       'where' => NULL,
       'orderBy' => array( 
         ),
@@ -91,7 +94,7 @@ class AuthorSchemaProxy
     )),
       'articles' => \Maghead\Schema\Relationship\ManyToMany::__set_state(array( 
       'data' => array( 
-          'relation_junction' => 'author_articles',
+          'relation_junction' => 'user_articles',
           'relation_foreign' => 'article',
         ),
       'accessor' => 'articles',
@@ -125,14 +128,14 @@ class AuthorSchemaProxy
       'widgetAttributes' => array( 
         ),
     ));
-        $this->columns[ 'first_name' ] = new RuntimeColumn('first_name',array( 
+        $this->columns[ 'username' ] = new RuntimeColumn('username',array( 
       'locales' => NULL,
       'attributes' => array( 
           'length' => 128,
           'required' => true,
-          'label' => 'First Name',
+          'label' => 'Username',
         ),
-      'name' => 'first_name',
+      'name' => 'username',
       'primary' => NULL,
       'unsigned' => NULL,
       'type' => 'varchar',
@@ -143,16 +146,16 @@ class AuthorSchemaProxy
       'onUpdate' => NULL,
       'length' => 128,
       'required' => true,
-      'label' => 'First Name',
+      'label' => 'Username',
     ));
-        $this->columns[ 'last_name' ] = new RuntimeColumn('last_name',array( 
+        $this->columns[ 'password' ] = new RuntimeColumn('password',array( 
       'locales' => NULL,
       'attributes' => array( 
           'length' => 128,
           'required' => true,
-          'label' => 'Last Name',
+          'label' => 'Password',
         ),
-      'name' => 'last_name',
+      'name' => 'password',
       'primary' => NULL,
       'unsigned' => NULL,
       'type' => 'varchar',
@@ -163,25 +166,51 @@ class AuthorSchemaProxy
       'onUpdate' => NULL,
       'length' => 128,
       'required' => true,
-      'label' => 'Last Name',
+      'label' => 'Password',
     ));
-        $this->columns[ 'about' ] = new RuntimeColumn('about',array( 
+        $this->columns[ 'salt' ] = new RuntimeColumn('salt',array( 
       'locales' => NULL,
       'attributes' => array( 
-          'length' => 1024,
-          'label' => 'About',
+          'length' => 32,
+          'required' => true,
+          'label' => 'Salt',
         ),
-      'name' => 'about',
+      'name' => 'salt',
       'primary' => NULL,
       'unsigned' => NULL,
       'type' => 'varchar',
       'isa' => 'str',
-      'notNull' => NULL,
+      'notNull' => true,
       'enum' => NULL,
       'set' => NULL,
       'onUpdate' => NULL,
-      'length' => 1024,
-      'label' => 'About',
+      'length' => 32,
+      'required' => true,
+      'label' => 'Salt',
+    ));
+        $this->columns[ 'wallet' ] = new RuntimeColumn('wallet',array( 
+      'locales' => NULL,
+      'attributes' => array( 
+          'length' => 10,
+          'decimals' => 2,
+          'required' => true,
+          'default' => 0,
+          'label' => 'Wallet',
+        ),
+      'name' => 'wallet',
+      'primary' => NULL,
+      'unsigned' => true,
+      'type' => 'double',
+      'isa' => 'double',
+      'notNull' => true,
+      'enum' => NULL,
+      'set' => NULL,
+      'onUpdate' => NULL,
+      'length' => 10,
+      'decimals' => 2,
+      'required' => true,
+      'default' => 0,
+      'label' => 'Wallet',
     ));
     }
 }

@@ -9,6 +9,8 @@
     'paths' => 
     array (
       0 => 'src/Article/Model',
+      1 => 'src/App/Model',
+      2 => 'src/User/Model',
     ),
   ),
   'instance' => 

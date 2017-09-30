@@ -26,5 +26,19 @@ abstract class ControllerAbstract implements ContainerAwareInterface, Renderable
         return $this->renderable->render($name, $context);
     }
 
+    /**
+     * @param string $routeName
+     * @param array $routeParams
+     */
+    public function redirectToRoute(string $routeName, array $routeParams = [])
+    {
+        // becouse my request cannot into redirects
+
+        $url = sprintf('%s', $routeName);
+
+        header(sprintf('Location: %s', $url));
+        exit;
+    }
+
 
 }

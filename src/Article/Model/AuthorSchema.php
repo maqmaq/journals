@@ -4,6 +4,10 @@ namespace Article\Model;
 
 use Maghead\Schema\DeclareSchema;
 
+/**
+ * Class AuthorSchema
+ * @package Article\Model
+ */
 class AuthorSchema extends DeclareSchema
 {
     public function schema()

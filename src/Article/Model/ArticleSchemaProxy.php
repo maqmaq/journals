@@ -126,6 +126,37 @@ class ArticleSchemaProxy
       'onDelete' => NULL,
       'usingIndex' => NULL,
     )),
+      'article_purchasers' => \Maghead\Schema\Relationship\HasMany::__set_state(array( 
+      'data' => array( 
+          'self_schema' => 'Article\\Model\\ArticleSchema',
+          'self_column' => 'id',
+          'foreign_schema' => 'Article\\Model\\ArticlePurchaserSchema',
+          'foreign_column' => 'article_id',
+        ),
+      'accessor' => 'article_purchasers',
+      'where' => NULL,
+      'orderBy' => array( 
+        ),
+      'onUpdate' => NULL,
+      'onDelete' => NULL,
+      'usingIndex' => NULL,
+    )),
+      'purchasers' => \Maghead\Schema\Relationship\ManyToMany::__set_state(array( 
+      'data' => array( 
+          'relation_junction' => 'article_purchasers',
+          'relation_foreign' => 'purchaser',
+          'filter' => function ($collection) {
+                    return $collection;
+                },
+        ),
+      'accessor' => 'purchasers',
+      'where' => NULL,
+      'orderBy' => array( 
+        ),
+      'onUpdate' => NULL,
+      'onDelete' => NULL,
+      'usingIndex' => NULL,
+    )),
     );
         $this->columns[ 'id' ] = new RuntimeColumn('id',array( 
       'locales' => NULL,
@@ -212,19 +243,21 @@ class ArticleSchemaProxy
       'attributes' => array( 
           'length' => 10,
           'decimals' => 2,
+          'default' => 0,
           'label' => 'Price',
         ),
       'name' => 'price',
       'primary' => NULL,
-      'unsigned' => NULL,
-      'type' => 'decimal',
-      'isa' => 'int',
+      'unsigned' => true,
+      'type' => 'double',
+      'isa' => 'double',
       'notNull' => NULL,
       'enum' => NULL,
       'set' => NULL,
       'onUpdate' => NULL,
       'length' => 10,
       'decimals' => 2,
+      'default' => 0,
       'label' => 'Price',
     ));
         $this->columns[ 'category_id' ] = new RuntimeColumn('category_id',array( 

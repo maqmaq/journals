@@ -4,6 +4,10 @@ namespace Article\Model;
 
 use Maghead\Schema\DeclareSchema;
 
+/**
+ * Class ArticleSchema
+ * @package Article\Model
+ */
 class ArticleSchema extends DeclareSchema
 {
     public function schema()
@@ -23,7 +27,9 @@ class ArticleSchema extends DeclareSchema
             ->label('Content');
 
         $this->column('price')
-            ->decimal(10, 2)
+            ->double(10, 2)
+            ->unsigned()
+            ->default(0)
             ->label('Price');
 
         $this->column('category_id')
@@ -34,7 +40,7 @@ class ArticleSchema extends DeclareSchema
         /**
          * accessor , mapping self.id => ArticleAuthor.article_id
          *
-         * link article => author_articles
+         * link article => article_authors
          */
         $this->many('article_authors', ArticleAuthor::class, 'article_id', 'id');
 
@@ -44,6 +50,19 @@ class ArticleSchema extends DeclareSchema
             });
 
         $this->belongsTo('category', CategorySchema::class, 'id', 'category_id');
+
+        /**
+         * accessor , mapping self.id => ArticlePurchaser.article_id
+         *
+         * link article => article_purchasers
+         */
+        $this->many('article_purchasers', ArticlePurchaser::class, 'article_id', 'id');
+
+        $this->manyToMany('purchasers', 'article_purchasers', 'purchaser')
+            ->filter(function ($collection) {
+                return $collection;
+            });
+
 
     }
 
