@@ -2,16 +2,9 @@
 
 {% block content %}
     {% if articles|length %}
-        <ul>
-            {% for article in articles %}
-                <li>
-                    {# @todo generate url using some view helper #}
-                    <a href="{{ "/articles/show/%s"|format(article.getId()) }}">{{ article.getTitle() }}</a></li>
-            {% endfor %}
-        </ul>
-
+        {% include 'partial/Article/ordered-list.html.twig' %}
     {% else %}
-       List is empty
+        List is empty
     {% endif %}
 
 

@@ -3,7 +3,7 @@
 
 namespace Article\Interactor\Author;
 
-use Maghead\Runtime\Repo;
+use Article\Interactor\GetByIdTrait;
 
 /**
  * Class GetById
@@ -12,26 +12,5 @@ use Maghead\Runtime\Repo;
 class GetById
 {
 
-    /**
-     * @var Repo
-     */
-    protected $repository;
-
-    /**
-     * GetList constructor.
-     * @param Repo $repository
-     */
-    public function __construct(Repo $repository)
-    {
-        $this->repository = $repository;
-    }
-
-    /**
-     * @param $idAuthor
-     * @return mixed
-     */
-    public function execute($idAuthor)
-    {
-        return $this->repository->findByPrimaryKey($idAuthor);
-    }
+    use GetByIdTrait;
 }

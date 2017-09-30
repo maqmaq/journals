@@ -8,12 +8,12 @@ class AuthorSchema extends DeclareSchema
 {
     public function schema()
     {
-        $this->column('firstName')
+        $this->column('first_name')
             ->varchar(128)
             ->required()
             ->label('First Name')
         ;
-        $this->column('lastName')
+        $this->column('last_name')
             ->varchar(128)
             ->required()
             ->label('Last Name')
@@ -21,7 +21,7 @@ class AuthorSchema extends DeclareSchema
 
         $this->column('about')
             ->varchar(1024)
-            ->label('about')
+            ->label('About')
         ;
 
         $this->many('author_articles', ArticleAuthorSchema::class, 'author_id', 'id');

@@ -47,8 +47,8 @@ class AuthorBase
 
     public static $column_names = array (
       0 => 'id',
-      1 => 'firstName',
-      2 => 'lastName',
+      1 => 'first_name',
+      2 => 'last_name',
       3 => 'about',
     );
 
@@ -59,9 +59,9 @@ class AuthorBase
 
     public $id;
 
-    public $firstName;
+    public $first_name;
 
-    public $lastName;
+    public $last_name;
 
     public $about;
 
@@ -111,12 +111,12 @@ class AuthorBase
 
     public function getFirstName()
     {
-        return $this->firstName;
+        return $this->first_name;
     }
 
     public function getLastName()
     {
-        return $this->lastName;
+        return $this->last_name;
     }
 
     public function getAbout()
@@ -126,27 +126,27 @@ class AuthorBase
 
     public function getAlterableData()
     {
-        return ["id" => $this->id, "firstName" => $this->firstName, "lastName" => $this->lastName, "about" => $this->about];
+        return ["id" => $this->id, "first_name" => $this->first_name, "last_name" => $this->last_name, "about" => $this->about];
     }
 
     public function getData()
     {
-        return ["id" => $this->id, "firstName" => $this->firstName, "lastName" => $this->lastName, "about" => $this->about];
+        return ["id" => $this->id, "first_name" => $this->first_name, "last_name" => $this->last_name, "about" => $this->about];
     }
 
     public function setData(array $data)
     {
         if (array_key_exists("id", $data)) { $this->id = $data["id"]; }
-        if (array_key_exists("firstName", $data)) { $this->firstName = $data["firstName"]; }
-        if (array_key_exists("lastName", $data)) { $this->lastName = $data["lastName"]; }
+        if (array_key_exists("first_name", $data)) { $this->first_name = $data["first_name"]; }
+        if (array_key_exists("last_name", $data)) { $this->last_name = $data["last_name"]; }
         if (array_key_exists("about", $data)) { $this->about = $data["about"]; }
     }
 
     public function clear()
     {
         $this->id = NULL;
-        $this->firstName = NULL;
-        $this->lastName = NULL;
+        $this->first_name = NULL;
+        $this->last_name = NULL;
         $this->about = NULL;
     }
 

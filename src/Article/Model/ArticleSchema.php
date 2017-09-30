@@ -11,24 +11,25 @@ class ArticleSchema extends DeclareSchema
         $this->column('title')
             ->varchar(128)
             ->required()
-            ->label('Title')
-        ;
+            ->label('Title');
 
-        $this->column('shortDescription')
+        $this->column('short_description')
             ->varchar(255)
             ->required()
-            ->label('Short description')
-        ;
+            ->label('Short description');
 
         $this->column('content')
             ->varchar(1024)
-            ->label('Content')
-        ;
+            ->label('Content');
 
         $this->column('price')
             ->decimal(10, 2)
-            ->label('Price')
-        ;
+            ->label('Price');
+
+        $this->column('category_id')
+            ->integer()
+            ->unsigned()
+            ->default(null);
 
         /**
          * accessor , mapping self.id => ArticleAuthor.article_id
@@ -41,6 +42,9 @@ class ArticleSchema extends DeclareSchema
             ->filter(function ($collection) {
                 return $collection;
             });
+
+        $this->belongsTo('category', CategorySchema::class, 'id', 'category_id');
+
     }
 
 }

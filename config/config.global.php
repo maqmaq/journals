@@ -58,6 +58,19 @@ $config = [
             'Article\Controller\AuthorController::showAction',
             'author_show'
         ],
+        //categories
+        [
+            'GET',
+            '/categories/list',
+            'Article\Controller\CategoryController::listAction',
+            'category_list'
+        ],
+        [
+            'GET',
+            '/categories/show/{id:number}',
+            'Article\Controller\CategoryController::showAction',
+            'author_show'
+        ],
     ],
 ];
 
@@ -85,11 +98,18 @@ $config['di'] =
         'article_interactor_get_list' => object(\Article\Interactor\Article\GetList::class)->constructor(get('article_repository')),
         'article_interactor_get_by_id' => object(\Article\Interactor\Article\GetById::class)->constructor(get('article_repository')),
         'article_interactor_get_list_by_author' => object(\Article\Interactor\Article\GetListByAuthor::class),
+        'article_interactor_get_list_by_category' => object(\Article\Interactor\Article\GetListByCategory::class),
 
         // author
         'author_repository' => DI\factory([\Article\Model\Author::class, 'masterRepo']),
         'author_interactor_get_list' => object(\Article\Interactor\Author\GetList::class)->constructor(get('author_repository')),
         'author_interactor_get_by_id' => object(\Article\Interactor\Author\GetById::class)->constructor(get('author_repository')),
+
+        // category
+
+        'category_repository' => DI\factory([\Article\Model\Category::class, 'masterRepo']),
+        'category_interactor_get_list' => object(\Article\Interactor\Category\GetList::class)->constructor(get('category_repository')),
+        'category_interactor_get_by_id' => object(\Article\Interactor\Category\GetById::class)->constructor(get('category_repository')),
     ];
 
 return $config;

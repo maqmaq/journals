@@ -6,6 +6,7 @@ namespace Article\Controller;
 use Article\Interactor\Article\GetListByAuthor;
 use Article\Interactor\Author\GetList;
 use Core\Controller\ControllerAbstract;
+use Core\Exception\ObjectNotFoundException;
 
 /**
  * Class AuthorController
@@ -20,8 +21,8 @@ class AuthorController extends ControllerAbstract
     public function listAction()
     {
         /** @var GetList $getListInteractor */
-        $getListInteractor =  $this->getContainer()->get('author_interactor_get_list');
-        $authors =  $getListInteractor->execute();
+        $getListInteractor = $this->getContainer()->get('author_interactor_get_list');
+        $authors = $getListInteractor->execute();
 
         $context = [
             'authors' => $authors
@@ -35,14 +36,17 @@ class AuthorController extends ControllerAbstract
      * @param $params
      * @return string
      */
-    public function showAction($params) {
+    public function showAction($params)
+    {
 
         $authorId = $params['id'];
         /** @var GetList $getListInteractor */
-        $getByIdInteractor =  $this->getContainer()->get('author_interactor_get_by_id');
+        $getByIdInteractor = $this->getContainer()->get('author_interactor_get_by_id');
         $author = $getByIdInteractor->execute($authorId);
 
-        // @todo return if not found
+        if ($author === false) {
+            throw new ObjectNotFoundException();
+        }
 
         /** @var GetListByAuthor $getListByAuthorInteractor */
         $getListByAuthorInteractor = $this->getContainer()->get('article_interactor_get_list_by_author');

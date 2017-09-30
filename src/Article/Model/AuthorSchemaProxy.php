@@ -39,8 +39,8 @@ class AuthorSchemaProxy
 
     public static $column_hash = array (
       'id' => 1,
-      'firstName' => 1,
-      'lastName' => 1,
+      'first_name' => 1,
+      'last_name' => 1,
       'about' => 1,
     );
 
@@ -49,8 +49,8 @@ class AuthorSchemaProxy
 
     public $columnNames = array (
       0 => 'id',
-      1 => 'firstName',
-      2 => 'lastName',
+      1 => 'first_name',
+      2 => 'last_name',
       3 => 'about',
     );
 
@@ -58,8 +58,8 @@ class AuthorSchemaProxy
 
     public $columnNamesIncludeVirtual = array (
       0 => 'id',
-      1 => 'firstName',
-      2 => 'lastName',
+      1 => 'first_name',
+      2 => 'last_name',
       3 => 'about',
     );
 
@@ -125,14 +125,14 @@ class AuthorSchemaProxy
       'widgetAttributes' => array( 
         ),
     ));
-        $this->columns[ 'firstName' ] = new RuntimeColumn('firstName',array( 
+        $this->columns[ 'first_name' ] = new RuntimeColumn('first_name',array( 
       'locales' => NULL,
       'attributes' => array( 
           'length' => 128,
           'required' => true,
           'label' => 'First Name',
         ),
-      'name' => 'firstName',
+      'name' => 'first_name',
       'primary' => NULL,
       'unsigned' => NULL,
       'type' => 'varchar',
@@ -145,14 +145,14 @@ class AuthorSchemaProxy
       'required' => true,
       'label' => 'First Name',
     ));
-        $this->columns[ 'lastName' ] = new RuntimeColumn('lastName',array( 
+        $this->columns[ 'last_name' ] = new RuntimeColumn('last_name',array( 
       'locales' => NULL,
       'attributes' => array( 
           'length' => 128,
           'required' => true,
           'label' => 'Last Name',
         ),
-      'name' => 'lastName',
+      'name' => 'last_name',
       'primary' => NULL,
       'unsigned' => NULL,
       'type' => 'varchar',

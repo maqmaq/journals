@@ -2,6 +2,7 @@
 
 namespace Core;
 
+use Core\Exception\ObjectNotFoundException;
 use Core\Router\RouterInterface;
 use Psr\Container\ContainerInterface;
 use QuimCalpe\Router\Dispatcher\DispatcherInterface;
@@ -87,12 +88,12 @@ class Application
     /**
      * Initializes database
      */
-    protected function initDatabase() {
+    protected function initDatabase()
+    {
 
         $config = FileConfigLoader::load($this->config['db']['config']['file']);
         Bootstrap::setup($config);  // true -> prepare connection only
     }
-
 
 
     /**
@@ -112,12 +113,12 @@ class Application
             header('Allow: ' . $e->getMessage());
             exit;
 
-        } catch (RouteNotFoundException $e) {
+        } catch (RouteNotFoundException|ObjectNotFoundException $e) {
             header('HTTP/1.0 404 Not Found');
             // not found....
             exit;
 
-        } catch (RuntimeException $e) {
+        } catch (RuntimeException|\Exception $e) {
             header('HTTP/1.0 500 Internal Server Error');
             // internal server error
             exit;

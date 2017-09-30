@@ -48,9 +48,10 @@ class ArticleBase
     public static $column_names = array (
       0 => 'id',
       1 => 'title',
-      2 => 'shortDescription',
+      2 => 'short_description',
       3 => 'content',
       4 => 'price',
+      5 => 'category_id',
     );
 
     public static $mixin_classes = array (
@@ -62,11 +63,13 @@ class ArticleBase
 
     public $title;
 
-    public $shortDescription;
+    public $short_description;
 
     public $content;
 
     public $price;
+
+    public $category_id;
 
     public static function getSchema()
     {
@@ -119,7 +122,7 @@ class ArticleBase
 
     public function getShortDescription()
     {
-        return $this->shortDescription;
+        return $this->short_description;
     }
 
     public function getContent()
@@ -132,32 +135,39 @@ class ArticleBase
         return intval($this->price);
     }
 
+    public function getCategoryId()
+    {
+        return intval($this->category_id);
+    }
+
     public function getAlterableData()
     {
-        return ["id" => $this->id, "title" => $this->title, "shortDescription" => $this->shortDescription, "content" => $this->content, "price" => $this->price];
+        return ["id" => $this->id, "title" => $this->title, "short_description" => $this->short_description, "content" => $this->content, "price" => $this->price, "category_id" => $this->category_id];
     }
 
     public function getData()
     {
-        return ["id" => $this->id, "title" => $this->title, "shortDescription" => $this->shortDescription, "content" => $this->content, "price" => $this->price];
+        return ["id" => $this->id, "title" => $this->title, "short_description" => $this->short_description, "content" => $this->content, "price" => $this->price, "category_id" => $this->category_id];
     }
 
     public function setData(array $data)
     {
         if (array_key_exists("id", $data)) { $this->id = $data["id"]; }
         if (array_key_exists("title", $data)) { $this->title = $data["title"]; }
-        if (array_key_exists("shortDescription", $data)) { $this->shortDescription = $data["shortDescription"]; }
+        if (array_key_exists("short_description", $data)) { $this->short_description = $data["short_description"]; }
         if (array_key_exists("content", $data)) { $this->content = $data["content"]; }
         if (array_key_exists("price", $data)) { $this->price = $data["price"]; }
+        if (array_key_exists("category_id", $data)) { $this->category_id = $data["category_id"]; }
     }
 
     public function clear()
     {
         $this->id = NULL;
         $this->title = NULL;
-        $this->shortDescription = NULL;
+        $this->short_description = NULL;
         $this->content = NULL;
         $this->price = NULL;
+        $this->category_id = NULL;
     }
 
     public function fetchArticleAuthors()
@@ -191,5 +201,10 @@ class ArticleBase
            return \Article\Model\ArticleAuthor::createAndLoad($a);
         });
         return $collection;
+    }
+
+    public function fetchCategory()
+    {
+        return static::masterRepo()->fetchCategoryOf($this);
     }
 }

@@ -41,20 +41,24 @@ class ArticleRepoBase
 
     const FETCH_ARTICLE_AUTHORS_SQL = 'SELECT * FROM article_authors WHERE article_id = ?';
 
+    const FETCH_CATEGORY_SQL = 'SELECT * FROM categories WHERE id = ? LIMIT 1';
+
     public static $columnNames = array (
       0 => 'id',
       1 => 'title',
-      2 => 'shortDescription',
+      2 => 'short_description',
       3 => 'content',
       4 => 'price',
+      5 => 'category_id',
     );
 
     public static $columnHash = array (
       'id' => 1,
       'title' => 1,
-      'shortDescription' => 1,
+      'short_description' => 1,
       'content' => 1,
       'price' => 1,
+      'category_id' => 1,
     );
 
     public static $mixinClasses = array (
@@ -65,6 +69,8 @@ class ArticleRepoBase
     protected $loadStm;
 
     protected $fetchArticleAuthorsStm;
+
+    protected $fetchCategoryStm;
 
     public function free()
     {
@@ -119,5 +125,17 @@ class ArticleRepoBase
         }
         $this->fetchArticleAuthorsStm->execute([$record->id]);
         return $this->fetchArticleAuthorsStm->fetchAll();
+    }
+
+    public function fetchCategoryOf(Model $record)
+    {
+        if (!$this->fetchCategoryStm) {
+            $this->fetchCategoryStm = $this->read->prepare(self::FETCH_CATEGORY_SQL);
+            $this->fetchCategoryStm->setFetchMode(PDO::FETCH_CLASS, \Article\Model\Category::class, [$this]);
+        }
+        $this->fetchCategoryStm->execute([$record->category_id]);
+        $obj = $this->fetchCategoryStm->fetch();
+        $this->fetchCategoryStm->closeCursor();
+        return $obj;
     }
 }

@@ -40,8 +40,10 @@ class ArticleController extends ControllerAbstract
         $getByIdInteractor =  $this->getContainer()->get('article_interactor_get_by_id');
         $article =  $getByIdInteractor->execute($idArticle);
 
-        // @todo return 404 if not found
+        if ($article === false) {
 
+            throw new ObjectNotFoundException();
+        }
         $context = [
             'article' => $article
         ];

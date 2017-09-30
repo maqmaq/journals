@@ -40,9 +40,10 @@ class ArticleSchemaProxy
     public static $column_hash = array (
       'id' => 1,
       'title' => 1,
-      'shortDescription' => 1,
+      'short_description' => 1,
       'content' => 1,
       'price' => 1,
+      'category_id' => 1,
     );
 
     public static $mixin_classes = array (
@@ -51,9 +52,10 @@ class ArticleSchemaProxy
     public $columnNames = array (
       0 => 'id',
       1 => 'title',
-      2 => 'shortDescription',
+      2 => 'short_description',
       3 => 'content',
       4 => 'price',
+      5 => 'category_id',
     );
 
     public $primaryKey = 'id';
@@ -61,9 +63,10 @@ class ArticleSchemaProxy
     public $columnNamesIncludeVirtual = array (
       0 => 'id',
       1 => 'title',
-      2 => 'shortDescription',
+      2 => 'short_description',
       3 => 'content',
       4 => 'price',
+      5 => 'category_id',
     );
 
     public $label = 'Article';
@@ -101,6 +104,21 @@ class ArticleSchemaProxy
                 },
         ),
       'accessor' => 'authors',
+      'where' => NULL,
+      'orderBy' => array( 
+        ),
+      'onUpdate' => NULL,
+      'onDelete' => NULL,
+      'usingIndex' => NULL,
+    )),
+      'category' => \Maghead\Schema\Relationship\BelongsTo::__set_state(array( 
+      'data' => array( 
+          'foreign_schema' => 'Article\\Model\\CategorySchema',
+          'foreign_column' => 'id',
+          'self_schema' => 'Article\\Model\\ArticleSchema',
+          'self_column' => 'category_id',
+        ),
+      'accessor' => 'category',
       'where' => NULL,
       'orderBy' => array( 
         ),
@@ -151,14 +169,14 @@ class ArticleSchemaProxy
       'required' => true,
       'label' => 'Title',
     ));
-        $this->columns[ 'shortDescription' ] = new RuntimeColumn('shortDescription',array( 
+        $this->columns[ 'short_description' ] = new RuntimeColumn('short_description',array( 
       'locales' => NULL,
       'attributes' => array( 
           'length' => 255,
           'required' => true,
           'label' => 'Short description',
         ),
-      'name' => 'shortDescription',
+      'name' => 'short_description',
       'primary' => NULL,
       'unsigned' => NULL,
       'type' => 'varchar',
@@ -208,6 +226,22 @@ class ArticleSchemaProxy
       'length' => 10,
       'decimals' => 2,
       'label' => 'Price',
+    ));
+        $this->columns[ 'category_id' ] = new RuntimeColumn('category_id',array( 
+      'locales' => NULL,
+      'attributes' => array( 
+          'default' => NULL,
+        ),
+      'name' => 'category_id',
+      'primary' => NULL,
+      'unsigned' => true,
+      'type' => 'int',
+      'isa' => 'int',
+      'notNull' => NULL,
+      'enum' => NULL,
+      'set' => NULL,
+      'onUpdate' => NULL,
+      'default' => NULL,
     ));
     }
 }

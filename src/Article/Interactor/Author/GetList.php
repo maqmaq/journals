@@ -2,7 +2,7 @@
 
 namespace Article\Interactor\Author;
 
-use Maghead\Runtime\Repo;
+use Article\Interactor\GetListTrait;
 
 /**
  * Class GetList
@@ -10,28 +10,6 @@ use Maghead\Runtime\Repo;
  */
 class GetList
 {
-
-    /**
-     * @var Repo
-     */
-    protected $repository;
-
-    /**
-     * GetList constructor.
-     * @param Repo $repository
-     */
-    public function __construct(Repo $repository)
-    {
-        $this->repository = $repository;
-    }
-
-    /**
-     * @return array
-     */
-    public function execute()
-    {
-        return $this->repository->collection()->selectAll();
-    }
-
+    use GetListTrait;
 
 }

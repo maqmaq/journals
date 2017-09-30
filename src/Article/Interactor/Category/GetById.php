@@ -1,16 +1,15 @@
 <?php
 
 
-namespace Article\Interactor\Article;
+namespace Article\Interactor\Category;
 
 use Article\Interactor\GetByIdTrait;
 
 /**
  * Class GetById
- * @package Article\Interactors\Article
+ * @package Article\Interactors\Category
  */
 class GetById
 {
-
     use GetByIdTrait;
 }
