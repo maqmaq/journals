@@ -134,7 +134,7 @@ $config['di'] =
         'core_session' => object(\Core\Session::class),
         'core_token_user_token_storage' => object(\Core\Token\UserTokenStorage::class)->constructor(get('user_repository')),
         'core_authentication_manager' => object(Core\Authentication\Manager\AuthenticationManager::class)->constructor(get('core_session')),
-        'core_authentication_service' => object(\Core\Authentication\AuthorizationService::class)->constructor(get('core_authentication_manager'), get('core_token_user_token_storage')),
+        'core_authentication_service' => object(\Core\Authentication\AuthenticationService::class)->constructor(get('core_authentication_manager'), get('core_token_user_token_storage')),
         'core_service_controller_initializer' => function (ContainerInterface $c) {
             // pass container to dispatcher
             return new \Core\Service\ControllerInitializer($c);

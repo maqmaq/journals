@@ -26,11 +26,11 @@ trait GetByIdTrait
     }
 
     /**
-     * @param $authorId
+     * @param $subjectId
      * @return Model|bool
      */
-    public function execute($authorId)
+    public function execute($subjectId)
     {
-        return $this->repository->findByPrimaryKey($authorId);
+        return $this->repository->findByPrimaryKey($subjectId);
     }
 }

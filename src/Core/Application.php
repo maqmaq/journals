@@ -116,7 +116,9 @@ class Application
     {
         try {
             // Match routes
-            $route = $this->router->parse($_SERVER['REQUEST_METHOD'], $_SERVER['REQUEST_URI']);
+            $requestMethod = ($_SERVER['REQUEST_METHOD']) ?? '';
+            $requestUri = ($_SERVER['REQUEST_URI']) ?? '';
+            $route = $this->router->parse($requestMethod, $requestUri);
             // Dispatch route
             $response = $this->dispatcher->handle($route);
 

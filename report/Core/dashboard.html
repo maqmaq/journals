@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title>Dashboard for /application/src/Core</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="../.css/bootstrap.min.css" rel="stylesheet" type="text/css">
+  <link href="../.css/nv.d3.min.css" rel="stylesheet" type="text/css">
+  <link href="../.css/style.css" rel="stylesheet" type="text/css">
+  <!--[if lt IE 9]>
+  <script src="../.js/html5shiv.min.js"></script>
+  <script src="../.js/respond.min.js"></script>
+  <![endif]-->
+ </head>
+ <body>
+  <header>
+   <div class="container">
+    <div class="row">
+     <div class="col-md-12">
+      <ol class="breadcrumb">
+        <li><a href="../index.html">/application/src</a></li>
+        <li><a href="index.html">Core</a></li>
+        <li class="active">(Dashboard)</li>
+
+      </ol>
+     </div>
+    </div>
+   </div>
+  </header>
+  <div class="container">
+   <div class="row">
+    <div class="col-md-12">
+     <h2>Classes</h2>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-6">
+     <h3>Coverage Distribution</h3>
+     <div id="classCoverageDistribution" style="height: 300px;">
+       <svg></svg>
+     </div>
+    </div>
+    <div class="col-md-6">
+     <h3>Complexity</h3>
+     <div id="classComplexity" style="height: 300px;">
+       <svg></svg>
+     </div>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-6">
+     <h3>Insufficient Coverage</h3>
+     <div class="scrollbox">
+      <table class="table">
+       <thead>
+        <tr>
+         <th>Class</th>
+         <th class="text-right">Coverage</th>
+        </tr>
+       </thead>
+       <tbody>
+       <tr><td><a href="Authentication/AuthenticationService.php.html#13">AuthenticationService</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Dispatcher.php.html#16">Dispatcher</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Security/UserVoterAbstract.php.html#11">UserVoterAbstract</a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/ControllerAbstract.php.html#16">ControllerAbstract</a></td><td class="text-right">16%</td></tr>
+       <tr><td><a href="Application.php.html#20">Application</a></td><td class="text-right">34%</td></tr>
+       <tr><td><a href="UriResolver/UriResolverAwareTrait.php.html#9">UriResolverAwareTrait</a></td><td class="text-right">66%</td></tr>
+
+       </tbody>
+      </table>
+     </div>
+    </div>
+    <div class="col-md-6">
+     <h3>Project Risks</h3>
+     <div class="scrollbox">
+      <table class="table">
+       <thead>
+        <tr>
+         <th>Class</th>
+         <th class="text-right"><abbr title="Change Risk Anti-Patterns (CRAP) Index">CRAP</abbr></th>
+        </tr>
+       </thead>
+       <tbody>
+       <tr><td><a href="Application.php.html#20">Application</a></td><td class="text-right">51</td></tr>
+       <tr><td><a href="Security/UserVoterAbstract.php.html#11">UserVoterAbstract</a></td><td class="text-right">42</td></tr>
+       <tr><td><a href="Authentication/AuthenticationService.php.html#13">AuthenticationService</a></td><td class="text-right">30</td></tr>
+       <tr><td><a href="Dispatcher.php.html#16">Dispatcher</a></td><td class="text-right">30</td></tr>
+
+       </tbody>
+      </table>
+     </div>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-12">
+     <h2>Methods</h2>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-6">
+     <h3>Coverage Distribution</h3>
+     <div id="methodCoverageDistribution" style="height: 300px;">
+       <svg></svg>
+     </div>
+    </div>
+    <div class="col-md-6">
+     <h3>Complexity</h3>
+     <div id="methodComplexity" style="height: 300px;">
+       <svg></svg>
+     </div>
+    </div>
+   </div>
+   <div class="row">
+    <div class="col-md-6">
+     <h3>Insufficient Coverage</h3>
+     <div class="scrollbox">
+      <table class="table">
+       <thead>
+        <tr>
+         <th>Method</th>
+         <th class="text-right">Coverage</th>
+        </tr>
+       </thead>
+       <tbody>
+       <tr><td><a href="Application.php.html#67"><abbr title="Application::initEnvironment">initEnvironment</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Application.php.html#76"><abbr title="Application::initRouter">initRouter</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Application.php.html#85"><abbr title="Application::initDispatcher">initDispatcher</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Application.php.html#93"><abbr title="Application::initDatabase">initDatabase</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Application.php.html#102"><abbr title="Application::initSession">initSession</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Authentication/AuthenticationService.php.html#41"><abbr title="AuthenticationService::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Authentication/AuthenticationService.php.html#50"><abbr title="AuthenticationService::getIdentity">getIdentity</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Authentication/AuthenticationService.php.html#69"><abbr title="AuthenticationService::hasIdentity">hasIdentity</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/ControllerAbstract.php.html#36"><abbr title="ControllerAbstract::redirectToRoute">redirectToRoute</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Controller/ControllerAbstract.php.html#47"><abbr title="ControllerAbstract::setHeaderLocationAndTerminate">setHeaderLocationAndTerminate</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Dispatcher.php.html#32"><abbr title="Dispatcher::__construct">__construct</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Dispatcher.php.html#45"><abbr title="Dispatcher::handle">handle</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Dispatcher.php.html#64"><abbr title="Dispatcher::getControllerInstance">getControllerInstance</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Security/UserVoterAbstract.php.html#20"><abbr title="UserVoterAbstract::voteForSubjectAttributesByUser">voteForSubjectAttributesByUser</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="UriResolver/UriResolverAwareTrait.php.html#20"><abbr title="UriResolverAwareTrait::getUriResolver">getUriResolver</abbr></a></td><td class="text-right">0%</td></tr>
+       <tr><td><a href="Application.php.html#115"><abbr title="Application::run">run</abbr></a></td><td class="text-right">31%</td></tr>
+
+       </tbody>
+      </table>
+     </div>
+    </div>
+    <div class="col-md-6">
+     <h3>Project Risks</h3>
+     <div class="scrollbox">
+      <table class="table">
+       <thead>
+        <tr>
+         <th>Method</th>
+         <th class="text-right"><abbr title="Change Risk Anti-Patterns (CRAP) Index">CRAP</abbr></th>
+        </tr>
+       </thead>
+       <tbody>
+       <tr><td><a href="Security/UserVoterAbstract.php.html#20"><abbr title="UserVoterAbstract::voteForSubjectAttributesByUser">voteForSubjectAttributesByUser</abbr></a></td><td class="text-right">20</td></tr>
+       <tr><td><a href="Authentication/AuthenticationService.php.html#50"><abbr title="AuthenticationService::getIdentity">getIdentity</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="Dispatcher.php.html#45"><abbr title="Dispatcher::handle">handle</abbr></a></td><td class="text-right">12</td></tr>
+       <tr><td><a href="Application.php.html#115"><abbr title="Application::run">run</abbr></a></td><td class="text-right">9</td></tr>
+       <tr><td><a href="Application.php.html#102"><abbr title="Application::initSession">initSession</abbr></a></td><td class="text-right">6</td></tr>
+
+       </tbody>
+      </table>
+     </div>
+    </div>
+   </div>
+   <footer>
+    <hr/>
+    <p>
+     <small>Generated by <a href="https://github.com/sebastianbergmann/php-code-coverage" target="_top">php-code-coverage 5.2.2</a> using <a href="https://secure.php.net/" target="_top">PHP 7.1.10-1+ubuntu16.04.1+deb.sury.org+1</a> with <a href="https://xdebug.org/">Xdebug 2.5.5</a> and <a href="https://phpunit.de/">PHPUnit 6.4-dev</a> at Sun Oct 1 17:18:28 UTC 2017.</small>
+    </p>
+   </footer>
+  </div>
+  <script src="../.js/jquery.min.js" type="text/javascript"></script>
+  <script src="../.js/bootstrap.min.js" type="text/javascript"></script>
+  <script src="../.js/holder.min.js" type="text/javascript"></script>
+  <script src="../.js/d3.min.js" type="text/javascript"></script>
+  <script src="../.js/nv.d3.min.js" type="text/javascript"></script>
+  <script type="text/javascript">
+$(document).ready(function() {
+  nv.addGraph(function() {
+    var chart = nv.models.multiBarChart();
+    chart.tooltips(false)
+      .showControls(false)
+      .showLegend(false)
+      .reduceXTicks(false)
+      .staggerLabels(true)
+      .yAxis.tickFormat(d3.format('d'));
+
+    d3.select('#classCoverageDistribution svg')
+      .datum(getCoverageDistributionData([3,0,1,0,1,0,0,1,0,0,0,15], "Class Coverage"))
+      .transition().duration(500).call(chart);
+
+    nv.utils.windowResize(chart.update);
+
+    return chart;
+  });
+
+  nv.addGraph(function() {
+    var chart = nv.models.multiBarChart();
+    chart.tooltips(false)
+      .showControls(false)
+      .showLegend(false)
+      .reduceXTicks(false)
+      .staggerLabels(true)
+      .yAxis.tickFormat(d3.format('d'));
+
+    d3.select('#methodCoverageDistribution svg')
+      .datum(getCoverageDistributionData([15,0,0,0,1,0,0,0,0,0,0,35], "Method Coverage"))
+      .transition().duration(500).call(chart);
+
+    nv.utils.windowResize(chart.update);
+
+    return chart;
+  });
+
+  function getCoverageDistributionData(data, label) {
+    var labels = [
+      '0%',
+      '0-10%',
+      '10-20%',
+      '20-30%',
+      '30-40%',
+      '40-50%',
+      '50-60%',
+      '60-70%',
+      '70-80%',
+      '80-90%',
+      '90-100%',
+      '100%'
+    ];
+    var values = [];
+    $.each(labels, function(key) {
+      values.push({x: labels[key], y: data[key]});
+    });
+
+    return [
+      {
+        key: label,
+        values: values,
+        color: "#4572A7"
+      }
+    ];
+  }
+  nv.addGraph(function() {
+    var chart = nv.models.scatterChart()
+      .showDistX(true)
+      .showDistY(true)
+      .showLegend(false)
+      .forceX([0, 100]);
+    chart.tooltipContent(function(graph) {
+      return '<p>' + graph.point.class + '</p>';
+    });
+
+    chart.xAxis.axisLabel('Code Coverage (in percent)');
+    chart.yAxis.axisLabel('Cyclomatic Complexity');
+
+    d3.select('#classComplexity svg')
+      .datum(getComplexityData([[34.883720930232556,12,"<a href=\"Application.php.html#20\">Application<\/a>"],[0,5,"<a href=\"Authentication\/AuthenticationService.php.html#13\">AuthenticationService<\/a>"],[100,0,"<a href=\"Authentication\/AuthenticationStatus.php.html#11\">AuthenticationStatus<\/a>"],[100,7,"<a href=\"Authentication\/Manager\/AuthenticationManager.php.html#12\">AuthenticationManager<\/a>"],[16.666666666666664,3,"<a href=\"Controller\/ControllerAbstract.php.html#16\">ControllerAbstract<\/a>"],[100,5,"<a href=\"Controller\/ControllerFactory.php.html#18\">ControllerFactory<\/a>"],[0,5,"<a href=\"Dispatcher.php.html#16\">Dispatcher<\/a>"],[100,0,"<a href=\"Exception\/ObjectNotFoundException.php.html#11\">ObjectNotFoundException<\/a>"],[100,3,"<a href=\"Router.php.html#13\">Router<\/a>"],[100,2,"<a href=\"Router\/UriResolver.php.html#11\">UriResolver<\/a>"],[100,2,"<a href=\"Security\/UserAccessManager.php.html#12\">UserAccessManager<\/a>"],[100,1,"<a href=\"Security\/UserAccessManagerFactory.php.html#12\">UserAccessManagerFactory<\/a>"],[0,6,"<a href=\"Security\/UserVoterAbstract.php.html#11\">UserVoterAbstract<\/a>"],[100,8,"<a href=\"Security\/UserVoterDecisionManager.php.html#11\">UserVoterDecisionManager<\/a>"],[100,2,"<a href=\"Service\/ControllerInitializer.php.html#14\">ControllerInitializer<\/a>"],[100,0,"<a href=\"Session.php.html#8\">Session<\/a>"],[100,3,"<a href=\"Token\/UserTokenStorage.php.html#13\">UserTokenStorage<\/a>"],[100,2,"<a href=\"View.php.html#11\">View<\/a>"],[100,2,"<a href=\"Container\/ContainerAwareTrait.php.html#9\">ContainerAwareTrait<\/a>"],[100,1,"<a href=\"Renderable\/RenderableAwareTrait.php.html#11\">RenderableAwareTrait<\/a>"],[66.66666666666666,2,"<a href=\"UriResolver\/UriResolverAwareTrait.php.html#9\">UriResolverAwareTrait<\/a>"]], 'Class Complexity'))
+      .transition()
+      .duration(500)
+      .call(chart);
+
+    nv.utils.windowResize(chart.update);
+
+    return chart;
+  });
+
+  nv.addGraph(function() {
+    var chart = nv.models.scatterChart()
+      .showDistX(true)
+      .showDistY(true)
+      .showLegend(false)
+      .forceX([0, 100]);
+    chart.tooltipContent(function(graph) {
+      return '<p>' + graph.point.class + '</p>';
+    });
+
+    chart.xAxis.axisLabel('Code Coverage (in percent)');
+    chart.yAxis.axisLabel('Method Complexity');
+
+    d3.select('#methodComplexity svg')
+      .datum(getComplexityData([[100,1,"<a href=\"Application.php.html#46\">Application::__construct<\/a>"],[100,1,"<a href=\"Application.php.html#55\">Application::init<\/a>"],[0,1,"<a href=\"Application.php.html#67\">Application::initEnvironment<\/a>"],[0,1,"<a href=\"Application.php.html#76\">Application::initRouter<\/a>"],[0,1,"<a href=\"Application.php.html#85\">Application::initDispatcher<\/a>"],[0,1,"<a href=\"Application.php.html#93\">Application::initDatabase<\/a>"],[0,2,"<a href=\"Application.php.html#102\">Application::initSession<\/a>"],[31.57894736842105,4,"<a href=\"Application.php.html#115\">Application::run<\/a>"],[0,1,"<a href=\"Authentication\/AuthenticationService.php.html#41\">AuthenticationService::__construct<\/a>"],[0,3,"<a href=\"Authentication\/AuthenticationService.php.html#50\">AuthenticationService::getIdentity<\/a>"],[0,1,"<a href=\"Authentication\/AuthenticationService.php.html#69\">AuthenticationService::hasIdentity<\/a>"],[100,1,"<a href=\"Authentication\/Manager\/AuthenticationManager.php.html#22\">AuthenticationManager::getKeyUser<\/a>"],[100,1,"<a href=\"Authentication\/Manager\/AuthenticationManager.php.html#36\">AuthenticationManager::__construct<\/a>"],[100,1,"<a href=\"Authentication\/Manager\/AuthenticationManager.php.html#46\">AuthenticationManager::logInUser<\/a>"],[100,2,"<a href=\"Authentication\/Manager\/AuthenticationManager.php.html#57\">AuthenticationManager::logOutUser<\/a>"],[100,1,"<a href=\"Authentication\/Manager\/AuthenticationManager.php.html#65\">AuthenticationManager::hasUserToken<\/a>"],[100,1,"<a href=\"Authentication\/Manager\/AuthenticationManager.php.html#73\">AuthenticationManager::getUserToken<\/a>"],[100,1,"<a href=\"Controller\/ControllerAbstract.php.html#27\">ControllerAbstract::render<\/a>"],[0,1,"<a href=\"Controller\/ControllerAbstract.php.html#36\">ControllerAbstract::redirectToRoute<\/a>"],[0,1,"<a href=\"Controller\/ControllerAbstract.php.html#47\">ControllerAbstract::setHeaderLocationAndTerminate<\/a>"],[100,4,"<a href=\"Controller\/ControllerFactory.php.html#25\">ControllerFactory::create<\/a>"],[100,1,"<a href=\"Controller\/ControllerFactory.php.html#55\">ControllerFactory::getController<\/a>"],[0,1,"<a href=\"Dispatcher.php.html#32\">Dispatcher::__construct<\/a>"],[0,3,"<a href=\"Dispatcher.php.html#45\">Dispatcher::handle<\/a>"],[0,1,"<a href=\"Dispatcher.php.html#64\">Dispatcher::getControllerInstance<\/a>"],[100,3,"<a href=\"Router.php.html#24\">Router::loadRoutes<\/a>"],[100,1,"<a href=\"Router\/UriResolver.php.html#22\">UriResolver::__construct<\/a>"],[100,1,"<a href=\"Router\/UriResolver.php.html#32\">UriResolver::findURI<\/a>"],[100,1,"<a href=\"Security\/UserAccessManager.php.html#24\">UserAccessManager::__construct<\/a>"],[100,1,"<a href=\"Security\/UserAccessManager.php.html#34\">UserAccessManager::can<\/a>"],[100,1,"<a href=\"Security\/UserAccessManagerFactory.php.html#20\">UserAccessManagerFactory::create<\/a>"],[0,4,"<a href=\"Security\/UserVoterAbstract.php.html#20\">UserVoterAbstract::voteForSubjectAttributesByUser<\/a>"],[100,1,"<a href=\"Security\/UserVoterAbstract.php.html#40\">UserVoterAbstract::supports<\/a>"],[100,1,"<a href=\"Security\/UserVoterAbstract.php.html#48\">UserVoterAbstract::voteOnAttribute<\/a>"],[100,1,"<a href=\"Security\/UserVoterDecisionManager.php.html#34\">UserVoterDecisionManager::__construct<\/a>"],[100,4,"<a href=\"Security\/UserVoterDecisionManager.php.html#46\">UserVoterDecisionManager::vote<\/a>"],[100,1,"<a href=\"Security\/UserVoterDecisionManager.php.html#65\">UserVoterDecisionManager::getVoters<\/a>"],[100,1,"<a href=\"Security\/UserVoterDecisionManager.php.html#73\">UserVoterDecisionManager::getUser<\/a>"],[100,1,"<a href=\"Security\/UserVoterDecisionManager.php.html#81\">UserVoterDecisionManager::getAttributes<\/a>"],[100,1,"<a href=\"Service\/ControllerInitializer.php.html#22\">ControllerInitializer::__construct<\/a>"],[100,1,"<a href=\"Service\/ControllerInitializer.php.html#32\">ControllerInitializer::initialize<\/a>"],[100,1,"<a href=\"Token\/UserTokenStorage.php.html#24\">UserTokenStorage::__construct<\/a>"],[100,1,"<a href=\"Token\/UserTokenStorage.php.html#34\">UserTokenStorage::getUserByToken<\/a>"],[100,1,"<a href=\"Token\/UserTokenStorage.php.html#42\">UserTokenStorage::getAnonymousUser<\/a>"],[100,1,"<a href=\"View.php.html#23\">View::__construct<\/a>"],[100,1,"<a href=\"View.php.html#37\">View::render<\/a>"],[100,1,"<a href=\"Container\/ContainerAwareTrait.php.html#20\">ContainerAwareTrait::getContainer<\/a>"],[100,1,"<a href=\"Container\/ContainerAwareTrait.php.html#28\">ContainerAwareTrait::setContainer<\/a>"],[100,1,"<a href=\"Renderable\/RenderableAwareTrait.php.html#21\">RenderableAwareTrait::setRenderable<\/a>"],[0,1,"<a href=\"UriResolver\/UriResolverAwareTrait.php.html#20\">UriResolverAwareTrait::getUriResolver<\/a>"],[100,1,"<a href=\"UriResolver\/UriResolverAwareTrait.php.html#28\">UriResolverAwareTrait::setUriResolver<\/a>"]], 'Method Complexity'))
+      .transition()
+      .duration(500)
+      .call(chart);
+
+    nv.utils.windowResize(chart.update);
+
+    return chart;
+  });
+
+  function getComplexityData(data, label) {
+    var values = [];
+    $.each(data, function(key) {
+      var value = Math.round(data[key][0]*100) / 100;
+      values.push({
+        x: value,
+        y: data[key][1],
+        class: data[key][2],
+        size: 0.05,
+        shape: 'diamond'
+      });
+    });
+
+    return [
+      {
+        key: label,
+        values: values,
+        color: "#4572A7"
+      }
+    ];
+  }
+});
+  </script>
+ </body>
+</html>

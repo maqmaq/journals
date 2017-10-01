@@ -31,7 +31,8 @@ class ControllerFactory
         /** @var UriResolverInterface $uriResolver */
         $uriResolver = $container->get('core_uri_resolver');
 
-        $controllerInstance = new $controllerClassName();
+        /** @var ControllerAbstract $controllerInstance */
+        $controllerInstance = $this->getController($controllerClassName);
         if ($controllerInstance instanceof ContainerAwareInterface) {
             $controllerInstance->setContainer($container);
         }
@@ -45,6 +46,15 @@ class ControllerFactory
         }
 
         return $controllerInstance;
+    }
+
+    /**
+     * @param $controllerClassName
+     * @return ControllerAbstract
+     */
+    protected function getController($controllerClassName)
+    {
+        return new $controllerClassName();
     }
 
 }

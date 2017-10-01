@@ -15,7 +15,7 @@ class Router extends \QuimCalpe\Router\Router implements RouterInterface, UriRes
     /**
      * Position of attribute name in route config
      */
-    const ROUTE_NAME_POSITION = 3;
+    protected const ROUTE_NAME_POSITION = 3;
 
     /**
      * @param array $routes

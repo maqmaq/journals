@@ -7,10 +7,10 @@ use Core\Token\UserTokenStorageInterface;
 use User\Model\User;
 
 /**
- * Class AuthorizationService
+ * Class AuthenticationService
  * @package Core\Authentication
  */
-class AuthorizationService implements AuthenticatorInterface
+class AuthenticationService implements AuthenticatorInterface
 {
 
     /**
@@ -34,7 +34,7 @@ class AuthorizationService implements AuthenticatorInterface
     protected $identity = self::UNINITIALIZED;
 
     /**
-     * AuthorizationService constructor.
+     * AuthenticationService constructor.
      * @param AuthenticationManagerInterface $authenticationManager
      * @param UserTokenStorageInterface $tokenStorage
      */

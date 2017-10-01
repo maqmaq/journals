@@ -4,6 +4,10 @@ namespace App\Interactor;
 
 use Maghead\Runtime\Repo;
 
+/**
+ * Class GetListTrait
+ * @package App\Interactor
+ */
 trait GetListTrait
 {
 

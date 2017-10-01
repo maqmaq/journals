@@ -4,7 +4,7 @@ namespace User\Controller;
 
 use Core\Authentication\AuthenticationStatus;
 use Core\Authentication\AuthenticatorInterface;
-use Core\Authentication\AuthorizationService;
+use Core\Authentication\AuthenticationService;
 use Core\Authentication\Manager\AuthenticationManagerInterface;
 use Core\Controller\ControllerAbstract;
 use Core\Exception\ObjectNotFoundException;
@@ -25,7 +25,7 @@ class AuthenticationController extends ControllerAbstract
     public function loginAction(): string
     {
         /** @var AuthenticatorInterface $authenticator */
-        $authenticator = $this->getContainer()->get('core_authentication_service');
+//        $authenticator = $this->getContainer()->get('core_authentication_service');
 //        if ($authenticator->hasIdentity()) {
 //            $this->redirectToRoute('homepage');
 //        }
@@ -47,7 +47,6 @@ class AuthenticationController extends ControllerAbstract
      */
     public function simpleLoginAction($params): string
     {
-
         $userId = $params['id'];
 
         /** @var AuthenticatorInterface $authenticationService */

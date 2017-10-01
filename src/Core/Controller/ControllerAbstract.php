@@ -36,8 +36,16 @@ abstract class ControllerAbstract implements ContainerAwareInterface, Renderable
     public function redirectToRoute(string $routeName, array $routeParams = []): void
     {
         // because my request cannot into redirects
-        $url = $this->uriResolver->findURI($routeName, $routeParams);
+        $url = $this->getUriResolver()->findURI($routeName, $routeParams);
+        $this->setHeaderLocationAndTerminate($url);
+    }
 
+    /**
+     * Sets header location and terminate script
+     * @param string $url
+     */
+    protected function setHeaderLocationAndTerminate(string $url): void
+    {
         header(sprintf('Location: %s', $url));
         exit;
     }
