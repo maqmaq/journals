@@ -3,6 +3,7 @@
 
 namespace Core;
 
+use Core\Controller\ControllerAbstract;
 use Core\Service\ControllerInitializer;
 use QuimCalpe\Router\Dispatcher\DispatcherInterface;
 use QuimCalpe\Router\Route\ParsedRoute;
@@ -58,9 +59,9 @@ class Dispatcher implements DispatcherInterface
 
     /**
      * @param $controllerClassName
-     * @return mixed
+     * @return ControllerAbstract
      */
-    protected function getControllerInstance($controllerClassName)
+    protected function getControllerInstance($controllerClassName): ControllerAbstract
     {
         return $this->controllerInitializer->initialize($controllerClassName);
     }

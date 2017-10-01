@@ -14,5 +14,5 @@ interface UserAccessManagerInterface
      * @param User|null $user used current if none given
      * @return bool
      */
-    public function can($object, User $user = null);
+    public function can($object, User $user = null): bool;
 }

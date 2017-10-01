@@ -15,7 +15,7 @@ interface AuthenticationManagerInterface
     /** Login user
      * @param User $user
      */
-    public function logInUser(User $user);
+    public function logInUser(User $user): bool;
 
     /**
      * Logout user
@@ -25,7 +25,7 @@ interface AuthenticationManagerInterface
     /**
      * @return bool
      */
-    public function hasUserToken();
+    public function hasUserToken(): bool;
 
     /**
      * @return mixed

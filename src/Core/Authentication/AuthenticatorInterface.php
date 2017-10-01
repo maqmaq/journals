@@ -18,6 +18,6 @@ interface AuthenticatorInterface
     /**
      * @return bool
      */
-    public function hasIdentity();
+    public function hasIdentity(): bool;
 
 }

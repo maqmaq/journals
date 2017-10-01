@@ -14,5 +14,5 @@ interface RenderableAwareInterface
      * @param RenderableInterface $renderable
      * @return mixed
      */
-    public function setRenderable(RenderableInterface $renderable);
+    public function setRenderable(RenderableInterface $renderable): void;
 }

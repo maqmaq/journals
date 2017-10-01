@@ -1,8 +1,7 @@
 <ul>
     {% for article in articles %}
         <li>
-            {# @todo generate url using some view helper #}
-            <a href="{{ "/articles/show/%s"|format(article.getId()) }}">{{ article.getTitle() }}</a>
+            <a href="{{  generateUrlForRoute('article_show', {'id' : article.getId()}) }}">{{ article.getTitle() }}</a>
         </li>
     {% endfor %}
 </ul>

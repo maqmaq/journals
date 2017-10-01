@@ -26,14 +26,14 @@ class ArticlePurchaseController extends ControllerAbstract
      * @return string
      * @throws ObjectNotFoundException
      */
-    public function showAction($params)
+    public function showAction($params): string
     {
-        $idArticle = $params['id'];
+        $articleId = $params['id'];
 
         // get article
         /** @var GetById $getByIdInteractor */
         $getByIdInteractor = $this->getContainer()->get('article_interactor_get_by_id');
-        $article = $getByIdInteractor->execute($idArticle);
+        $article = $getByIdInteractor->execute($articleId);
 
         if ($article === false) {
             throw new ObjectNotFoundException();
@@ -56,8 +56,6 @@ class ArticlePurchaseController extends ControllerAbstract
         /** @var Article $article */
         /** @var UserAccessManagerInterface $articleContentAccessManager */
         $articleContentAccessManager = $this->getContainer()->get('article_access_manager_article_content_by_user');
-
-
 
         // user already purchased article
         if ($articleContentAccessManager->can($article)) {
@@ -84,7 +82,5 @@ class ArticlePurchaseController extends ControllerAbstract
         return $this->render($template, array_merge($context, [
             'status' => ($purchasingResult) ? Status::STATUS_PURCHASE_SUCCESS : Status::STATUS_PURCHASE_ERROR
         ]));
-
-
     }
 }

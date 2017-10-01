@@ -18,7 +18,7 @@ trait RenderableAwareTrait
     /**
      * @param RenderableInterface $renderable
      */
-    public function setRenderable(RenderableInterface $renderable)
+    public function setRenderable(RenderableInterface $renderable): void
     {
         $this->renderable = $renderable;
     }

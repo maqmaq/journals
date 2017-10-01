@@ -4,12 +4,13 @@
 namespace Core;
 
 use Core\Router\RouterInterface;
+use Core\Router\UriResolverInterface;
 
 /**
  * Class Router
  * @package Core
  */
-class Router extends \QuimCalpe\Router\Router implements RouterInterface
+class Router extends \QuimCalpe\Router\Router implements RouterInterface, UriResolverInterface
 {
     /**
      * Position of attribute name in route config

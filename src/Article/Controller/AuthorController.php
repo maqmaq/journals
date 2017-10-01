@@ -18,7 +18,7 @@ class AuthorController extends ControllerAbstract
     /** List action
      * @return string
      */
-    public function listAction()
+    public function listAction(): string
     {
         /** @var GetList $getListInteractor */
         $getListInteractor = $this->getContainer()->get('author_interactor_get_list');
@@ -37,9 +37,8 @@ class AuthorController extends ControllerAbstract
      * @return string
      * @throws ObjectNotFoundException
      */
-    public function showAction($params)
+    public function showAction($params): string
     {
-
         $authorId = $params['id'];
         /** @var GetList $getListInteractor */
         $getByIdInteractor = $this->getContainer()->get('author_interactor_get_by_id');

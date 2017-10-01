@@ -6,7 +6,6 @@ use Article\Interactor\Article\GetById;
 use Core\Controller\ControllerAbstract;
 use Article\Interactor\Article\GetList;
 use Core\Exception\ObjectNotFoundException;
-use Core\Security\UserAccessManager;
 use Core\Security\UserAccessManagerInterface;
 
 /**
@@ -18,7 +17,7 @@ class ArticleController extends ControllerAbstract
     /** List action
      * @return string
      */
-    public function listAction()
+    public function listAction(): string
     {
         /** @var GetList $getListInteractor */
         $getListInteractor = $this->getContainer()->get('article_interactor_get_list');
@@ -36,14 +35,14 @@ class ArticleController extends ControllerAbstract
      * @return string
      * @throws ObjectNotFoundException
      */
-    public function showAction($params)
+    public function showAction($params):string
     {
 
-        $idArticle = $params['id'];
+        $articleId = $params['id'];
 
         /** @var GetById $getByIdInteractor */
         $getByIdInteractor = $this->getContainer()->get('article_interactor_get_by_id');
-        $article = $getByIdInteractor->execute($idArticle);
+        $article = $getByIdInteractor->execute($articleId);
 
         if ($article === false) {
             throw new ObjectNotFoundException();

@@ -1,17 +1,18 @@
 {% extends "Template/layout.html.twig" %}
 
 {% block content %}
+    <div>List of categories</div>
     {% if categories|length %}
         <ul>
             {% for category in categories %}
                 <li>
-                    {# @todo generate url using some view helper #}
-                    <a href="{{ "/categories/show/%s"|format(category.getId()) }}">{{ category.getName() }}</a></li>
+                    <a href="{{ generateUrlForRoute('category_show', {'id' : category.getId()}) }}">{{ category.getName() }}</a>
+                </li>
             {% endfor %}
         </ul>
 
     {% else %}
-        List is empty
+        <div>List is empty<div>
     {% endif %}
 
 

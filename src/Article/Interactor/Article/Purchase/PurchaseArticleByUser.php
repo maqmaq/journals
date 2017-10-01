@@ -70,7 +70,7 @@ class PurchaseArticleByUser
      * @param $price
      * @return string
      */
-    protected function getCurrentFundBalance($oldBalance, $price)
+    protected function getCurrentFundBalance($oldBalance, $price): string
     {
         return bcsub($oldBalance, $price, 2);
     }

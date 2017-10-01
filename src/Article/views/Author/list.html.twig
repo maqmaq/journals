@@ -1,17 +1,19 @@
 {% extends "Template/layout.html.twig" %}
 
 {% block content %}
+    <div>List of authors</div>
+
     {% if authors|length %}
         <ul>
             {% for author in authors %}
                 <li>
-                    {# @todo generate url using some view helper #}
-                    <a href="{{ "/authors/show/%s"|format(author.getId()) }}">{{ author.getFirstName() }} {{ author.getLastName() }}</a></li>
+                    <a href="{{ generateUrlForRoute('author_show', {'id' : author.getId()}) }}">{{ author.getFirstName() }} {{ author.getLastName() }}</a>
+                </li>
             {% endfor %}
         </ul>
 
     {% else %}
-       List is empty
+        <div>List is empty<div>
     {% endif %}
 
 

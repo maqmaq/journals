@@ -29,7 +29,7 @@ class ControllerInitializer implements ContainerAwareInterface
      * @param string $controllerClass
      * @return ControllerAbstract
      */
-    public function initialize(string $controllerClass)
+    public function initialize(string $controllerClass): ControllerAbstract
     {
         return $this->getContainer()->get($controllerClass);
     }

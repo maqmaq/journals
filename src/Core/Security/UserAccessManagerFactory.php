@@ -17,7 +17,7 @@ class UserAccessManagerFactory
      * @param AuthenticatorInterface $authenticator
      * @return UserAccessManager
      */
-    public function create( $voters, $attributes, $authenticator)
+    public function create( $voters, $attributes, $authenticator): UserAccessManager
     {
         $decisionManager = new UserVoterDecisionManager($voters, $authenticator->getIdentity(), $attributes);
         return new UserAccessManager($decisionManager);

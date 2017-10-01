@@ -1,7 +1,6 @@
 <?php
 
-
-namespace Article\Interactor;
+namespace App\Interactor;
 
 use Maghead\Runtime\Model;
 use Maghead\Runtime\Repo;
@@ -27,11 +26,11 @@ trait GetByIdTrait
     }
 
     /**
-     * @param $idAuthor
+     * @param $authorId
      * @return Model|bool
      */
-    public function execute($idAuthor)
+    public function execute($authorId)
     {
-        return $this->repository->findByPrimaryKey($idAuthor);
+        return $this->repository->findByPrimaryKey($authorId);
     }
 }

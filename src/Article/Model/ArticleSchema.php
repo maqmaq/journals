@@ -10,7 +10,7 @@ use Maghead\Schema\DeclareSchema;
  */
 class ArticleSchema extends DeclareSchema
 {
-    public function schema()
+    public function schema(): void
     {
         $this->column('title')
             ->varchar(128)

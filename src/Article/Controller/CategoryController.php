@@ -18,7 +18,7 @@ class CategoryController extends ControllerAbstract
     /** List action
      * @return string
      */
-    public function listAction()
+    public function listAction(): string
     {
         /** @var GetList $getListInteractor */
         $getListInteractor = $this->getContainer()->get('category_interactor_get_list');
@@ -37,7 +37,7 @@ class CategoryController extends ControllerAbstract
      * @return string
      * @throws ObjectNotFoundException
      */
-    public function showAction($params)
+    public function showAction($params): string
     {
 
         $authorId = $params['id'];

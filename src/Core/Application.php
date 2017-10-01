@@ -52,7 +52,7 @@ class Application
     /**
      * Initializes app
      */
-    public function init()
+    public function init(): void
     {
         $this->initEnvironment();
         $this->initRouter();
@@ -64,7 +64,7 @@ class Application
     /**
      * Initializes env
      */
-    protected function initEnvironment()
+    protected function initEnvironment(): void
     {
         ini_set('display_errors', $this->config['env'] !== ENV_PROD);
         ini_set('error_reporting', E_ALL);
@@ -73,7 +73,7 @@ class Application
     /**
      * Initializes router and load routes
      */
-    protected function initRouter()
+    protected function initRouter(): void
     {
         $this->router = $this->container->get('core_router');
         $this->router->loadRoutes($this->config['routes']);
@@ -82,7 +82,7 @@ class Application
     /**
      * Initializes dispatcher
      */
-    protected function initDispatcher()
+    protected function initDispatcher(): void
     {
         $this->dispatcher = $this->container->get('core_dispatcher');
     }
@@ -90,7 +90,7 @@ class Application
     /**
      * Initializes database
      */
-    protected function initDatabase()
+    protected function initDatabase(): void
     {
         $config = FileConfigLoader::load($this->config['db']['config']['file']);
         Bootstrap::setup($config);  // true -> prepare connection only
@@ -99,7 +99,8 @@ class Application
     /**
      * Initializes session
      */
-    protected function initSession() {
+    protected function initSession(): void
+    {
         /** @var SessionInterface $session */
         $session = $this->container->get('core_session');
         if (!$session->isStarted()) {
@@ -107,11 +108,11 @@ class Application
         }
     }
 
-
     /**
      * Runs application
+     * @return void
      */
-    public function run()
+    public function run(): void
     {
         try {
             // Match routes

@@ -13,7 +13,7 @@ class HomepageController extends ControllerAbstract
      * Index action
      * @return string
      */
-    public function indexAction()
+    public function indexAction(): string
     {
         return $this->render('Homepage/index.html.twig', []);
     }

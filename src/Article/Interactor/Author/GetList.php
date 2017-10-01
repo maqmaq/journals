@@ -2,7 +2,7 @@
 
 namespace Article\Interactor\Author;
 
-use Article\Interactor\GetListTrait;
+use App\Interactor\GetListTrait;
 
 /**
  * Class GetList

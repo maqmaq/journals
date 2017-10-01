@@ -1,6 +1,6 @@
 <?php
 
-namespace Article\Interactor;
+namespace App\Interactor;
 
 use Maghead\Runtime\Repo;
 
@@ -22,7 +22,7 @@ trait GetListTrait
     }
 
     /**
-     * @return array
+     * @return mixed
      */
     public function execute()
     {

@@ -5,10 +5,13 @@ namespace Core\Controller;
 
 use Core\Container\ContainerAwareInterface;
 use Core\Renderable\RenderableAwareInterface;
+use Core\Router\UriResolverInterface;
+use Core\UriResolver\UriResolverAwareInterface;
 use DI\Definition\Definition;
 use Psr\Container\ContainerInterface;
 
 /**
+ * @todo refactor, use decorators for controllers?
  * Class ControllerFactory
  * @package Core\Controller
  */
@@ -25,6 +28,8 @@ class ControllerFactory
         /** @var ControllerAbstract $controllerInstance */
 
         $renderable = $container->get('core_view');
+        /** @var UriResolverInterface $uriResolver */
+        $uriResolver = $container->get('core_uri_resolver');
 
         $controllerInstance = new $controllerClassName();
         if ($controllerInstance instanceof ContainerAwareInterface) {
@@ -33,6 +38,10 @@ class ControllerFactory
 
         if ($controllerInstance instanceof RenderableAwareInterface) {
             $controllerInstance->setRenderable($renderable);
+        }
+
+        if ($controllerInstance instanceof UriResolverAwareInterface) {
+            $controllerInstance->setUriResolver($uriResolver);
         }
 
         return $controllerInstance;

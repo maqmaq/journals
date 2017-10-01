@@ -22,6 +22,6 @@ interface UserTokenStorageInterface
     /**
      * @return User
      */
-    public function getAnonymousUser();
+    public function getAnonymousUser(): User;
 
 }

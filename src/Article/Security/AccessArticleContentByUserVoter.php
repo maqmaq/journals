@@ -6,6 +6,10 @@ use Article\Model\Article;
 use Core\Security\UserVoterAbstract;
 use User\Model\User;
 
+/**
+ * Class AccessArticleContentByUserVoter
+ * @package Article\Security
+ */
 class AccessArticleContentByUserVoter extends UserVoterAbstract
 {
     /**

@@ -13,28 +13,26 @@ use Maghead\Schema\DeclareSchema;
 class ArticlePurchaserSchema extends DeclareSchema
 {
 
-    public function schema()
+    public function schema(): void
     {
         $this->column('user_id')
             ->integer()
             ->unsigned()
             ->required()
-            ->refer(UserSchema::class)
-        ;
+            ->refer(UserSchema::class);
+
         $this->column('article_id')
             ->integer()
             ->unsigned()
             ->required()
-            ->refer(ArticleSchema::class)
-        ;
+            ->refer(ArticleSchema::class);
 
         $this->belongsTo('article', Article::class, 'id', 'article_id')
             ->onDelete('CASCADE')
-            ->onUpdate('CASCADE')
-        ;
+            ->onUpdate('CASCADE');
+
         $this->belongsTo('purchaser', User::class, 'id', 'user_id')
             ->onDelete('CASCADE')
-            ->onUpdate('CASCADE')
-        ;
+            ->onUpdate('CASCADE');
     }
 }

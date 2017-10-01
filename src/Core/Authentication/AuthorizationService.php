@@ -66,7 +66,7 @@ class AuthorizationService implements AuthenticatorInterface
     /**
      * @return bool
      */
-    public function hasIdentity()
+    public function hasIdentity(): bool
     {
         return $this->authenticationManager->hasUserToken();
     }

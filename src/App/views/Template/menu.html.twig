@@ -1,9 +1,10 @@
 {% block content %}
     <ul>
-        <li><a href="/articles/list">List of articles</a></li>
-        <li><a href="/authors/list">List of authors</a></li>
-        <li><a href="/categories/list">List of categories</a></li>
-        <li><a href="/users/login">User login</a></li>
-        <li><a href="/users/list">List of users</a></li>
+
+        <li><a href="{{ generateUrlForRoute('article_list') }}">List of articles</a></li>
+        <li><a href="{{ generateUrlForRoute('author_list') }}">List of authors</a></li>
+        <li><a href="{{ generateUrlForRoute('category_list') }}">List of categories</a></li>
+        <li><a href="{{ generateUrlForRoute('user_authentication_login') }}">User login</a></li>
+        <li><a href="{{ generateUrlForRoute('user_list') }}">List of users</a></li>
     </ul>
 {% endblock %}

@@ -38,14 +38,12 @@ class AuthenticationManager implements AuthenticationManagerInterface
         $this->storage = $storage;
     }
 
-    /** Login user
-     * @param User $user
-     */
     /**
+     * Log in user
      * @param User $user
-     * @return boolean
+     * @return bool
      */
-    public function logInUser(User $user)
+    public function logInUser(User $user): bool
     {
         $this->storage->clear();
         $this->storage->set($this->getKeyUser(), $user->getId());
@@ -64,7 +62,7 @@ class AuthenticationManager implements AuthenticationManagerInterface
     /**
      * @return bool
      */
-    public function hasUserToken()
+    public function hasUserToken(): bool
     {
         return $this->storage->has($this->getKeyUser());
     }

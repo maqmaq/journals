@@ -12,7 +12,6 @@ use User\Model\UserSchemaProxy;
  */
 class UserTokenStorage implements UserTokenStorageInterface
 {
-
     /**
      * @var Repo
      */
@@ -40,8 +39,8 @@ class UserTokenStorage implements UserTokenStorageInterface
     /**
      * @return User
      */
-    public function getAnonymousUser() {
-
+    public function getAnonymousUser(): User
+    {
         // sorry for that, i got no time left
         $className = UserSchemaProxy::MODEL_CLASS;
         return new $className();

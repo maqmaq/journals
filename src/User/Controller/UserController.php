@@ -7,12 +7,16 @@ namespace User\Controller;
 use Core\Controller\ControllerAbstract;
 use User\Interactor\User\GetList;
 
+/**
+ * Class UserController
+ * @package User\Controller
+ */
 class UserController extends ControllerAbstract
 {
     /** List action
      * @return string
      */
-    public function listAction()
+    public function listAction(): string
     {
         /** @var GetList $getListInteractor */
         $getListInteractor = $this->getContainer()->get('user_interactor_get_list');

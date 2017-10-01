@@ -12,28 +12,26 @@ use Maghead\Schema\DeclareSchema;
 class ArticleAuthorSchema extends DeclareSchema
 {
 
-    public function schema()
+    public function schema(): void
     {
         $this->column('author_id')
             ->integer()
             ->unsigned()
             ->required()
-            ->refer(AuthorSchema::class)
-        ;
+            ->refer(AuthorSchema::class);
+
         $this->column('article_id')
             ->integer()
             ->unsigned()
             ->required()
-            ->refer(ArticleSchema::class)
-        ;
+            ->refer(ArticleSchema::class);
 
         $this->belongsTo('article', Article::class, 'id', 'article_id')
             ->onDelete('CASCADE')
-            ->onUpdate('CASCADE')
-        ;
+            ->onUpdate('CASCADE');
+
         $this->belongsTo('author', Author::class, 'id', 'author_id')
             ->onDelete('CASCADE')
-            ->onUpdate('CASCADE')
-        ;
+            ->onUpdate('CASCADE');
     }
 }

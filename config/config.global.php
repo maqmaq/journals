@@ -1,5 +1,6 @@
 <?php
 
+use App\Twig\EnvironmentFactory;
 use Article\Interactor\Article\Purchase\PurchaseArticleByUser;
 use Article\Security\AccessArticleContentByUserVoter;
 use Article\Security\EnoughFundsToPurchaseArticleByUser;
@@ -87,7 +88,7 @@ $config = [
             'GET',
             '/categories/show/{id:number}',
             'Article\Controller\CategoryController::showAction',
-            'author_show'
+            'category_show'
         ],
         // user
         [
@@ -140,10 +141,17 @@ $config['di'] =
         },
         'core_user_access_manager_factory' => object(\Core\Security\UserAccessManagerFactory::class),
         'core_user_voter_decision_manager' => object(\Core\Security\UserVoterDecisionManager::class),
+        'core_uri_resolver' => object(\Core\Router\UriResolver::class)->constructor(get('core_router')),
 
         // twig
         'twig_loader' => object(Twig_Loader_Filesystem::class)->constructor($config['twig']['loader']['template_dir']),
-        'twig_environment' => object(Twig_Environment::class)->constructor(get('twig_loader'), $config['twig']['environment']),
+//        'twig_environment' => object(Twig_Environment::class)->constructor(get('twig_loader'), $config['twig']['environment']),
+        'twig_environment_config' => $config['twig']['environment'],
+        'twig_environment' => function (ContainerInterface $c) {
+
+            $environmentFactory = new EnvironmentFactory($c);
+            return $environmentFactory->create();
+        },
 
         // app
         '*\Controller\*Controller' => DI\factory([\Core\Controller\ControllerFactory::class, 'create']),

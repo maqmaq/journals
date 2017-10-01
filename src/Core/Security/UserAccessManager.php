@@ -31,7 +31,7 @@ class UserAccessManager implements UserAccessManagerInterface
      * @param User|null $user
      * @return bool
      */
-    public function can($object, User $user = null)
+    public function can($object, User $user = null):bool
     {
         return $this->decisionManager->vote($object, $user);
     }

@@ -3,7 +3,7 @@
 
 namespace User\Interactor\User;
 
-use Article\Interactor\GetListTrait;
+use App\Interactor\GetListTrait;
 
 /**
  * Class GetList

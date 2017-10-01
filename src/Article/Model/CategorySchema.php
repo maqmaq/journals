@@ -12,7 +12,7 @@ use Maghead\Schema\DeclareSchema;
 class CategorySchema extends DeclareSchema
 {
 
-    public function schema()
+    public function schema(): void
     {
         $this->column('name')
             ->required()

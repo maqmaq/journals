@@ -1,11 +1,12 @@
 {% extends "Template/layout.html.twig" %}
 
 {% block content %}
+    <div>List of users</div>
+
     {% if users|length %}
         <ul>
             {% for user in users %}
                 <li>
-                    {# @todo generate url using some view helper #}
                     <dl>
                         <dt>Id</dt>
                         <dd>{{ user.getId() }}</dd>
@@ -16,13 +17,14 @@
 
                         <dt>Actions</dt>
                         <dd>
-                            <a href="{{ "/users/login/%s"|format(user.getId()) }}">login as {{ user.getUsername() }}</a>
+                            <a href="{{ generateUrlForRoute('user_authentication_simple_login', {'id' : user.getId()}) }}">login
+                                as {{ user.getUsername() }}</a>
                         </dd>
                     </dl>
                 </li>
             {% endfor %}
         </ul>    {% else %}
-        List is empty
+        <div>List is empty<div>
     {% endif %}
 
 

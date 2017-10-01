@@ -34,7 +34,7 @@ class View implements RenderableInterface
      * @return string The rendered template
      *
      */
-    public function render($name, array $context = array())
+    public function render($name, array $context = array()): string
     {
         return $this->renderer->render($name, $context);
     }

@@ -3,7 +3,7 @@
 
 namespace Article\Interactor\Article;
 
-use Article\Interactor\GetByIdTrait;
+use App\Interactor\GetByIdTrait;
 
 /**
  * Class GetById

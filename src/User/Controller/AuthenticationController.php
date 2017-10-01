@@ -22,14 +22,13 @@ class AuthenticationController extends ControllerAbstract
      * Login action
      * @return string
      */
-    public function loginAction()
+    public function loginAction(): string
     {
         /** @var AuthenticatorInterface $authenticator */
         $authenticator = $this->getContainer()->get('core_authentication_service');
-        if ($authenticator->hasIdentity()) {
-//             @todo redirect
+//        if ($authenticator->hasIdentity()) {
 //            $this->redirectToRoute('homepage');
-        }
+//        }
 
         // @todo
         // create form
@@ -41,10 +40,15 @@ class AuthenticationController extends ControllerAbstract
         return $this->render('Authentication/login.html.twig');
     }
 
-    public function simpleLoginAction($params)
+    /**
+     * @param $params
+     * @return string
+     * @throws ObjectNotFoundException
+     */
+    public function simpleLoginAction($params): string
     {
 
-        $idUser = $params['id'];
+        $userId = $params['id'];
 
         /** @var AuthenticatorInterface $authenticationService */
         $authenticationService = $this->getContainer()->get('core_authentication_service');
@@ -53,12 +57,11 @@ class AuthenticationController extends ControllerAbstract
                 'status' => AuthenticationStatus::STATUS_ALREADY_AUTHENTICATED
             ];
             return $this->render('Authentication/simple_login.html.twig', $context);
-
         }
 
         /** @var GetById $getByIdInteractor */
         $getByIdInteractor = $this->getContainer()->get('user_interactor_get_by_id');
-        $user = $getByIdInteractor->execute($idUser);
+        $user = $getByIdInteractor->execute($userId);
 
         if ($user === false) {
             throw new ObjectNotFoundException();
@@ -69,8 +72,7 @@ class AuthenticationController extends ControllerAbstract
             'user' => $user
         ];
 
-
-       /** @var AuthenticationManagerInterface $authenticationManager */
+        /** @var AuthenticationManagerInterface $authenticationManager */
         $authenticationManager = $this->getContainer()->get('core_authentication_manager');
         $authenticationStatus = $authenticationManager->logInUser($user);
 

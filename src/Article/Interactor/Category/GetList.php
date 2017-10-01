@@ -2,7 +2,7 @@
 
 namespace Article\Interactor\Category;
 
-use Article\Interactor\GetListTrait;
+use App\Interactor\GetListTrait;
 
 /**
  * Class GetList

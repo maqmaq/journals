@@ -2,7 +2,7 @@
 
 namespace Article\Interactor\Article;
 
-use Article\Interactor\GetListTrait;
+use App\Interactor\GetListTrait;
 
 /**
  * Class GetList
@@ -10,6 +10,7 @@ use Article\Interactor\GetListTrait;
  */
 class GetList
 {
+
     use GetListTrait;
 
 }
