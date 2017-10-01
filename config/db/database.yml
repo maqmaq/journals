@@ -20,3 +20,6 @@ databases:
     host: mysql
     user: journals
     pass: journals
+seeds:
+- User\Seed::UserSeed
+- Article\Seed::ArticleSeed

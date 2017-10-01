@@ -17,6 +17,10 @@ php phing.phar docker:build
 ```bash
 docker logs -f journals-php-fpm
 ```
+- Seed database using command:
+```bash
+docker exec -it journals-php-fpm bash -c 'php phing.phar database:reseed'
+```
 - Open [http://localhost:8081](http://localhost:8081)
 
 ### Live demo

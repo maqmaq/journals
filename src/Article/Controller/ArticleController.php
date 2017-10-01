@@ -56,6 +56,7 @@ class ArticleController extends ControllerAbstract
             'article' => $article,
             'canUserAccessArticleContent' => $canUserAccessArticleContent
         ];
+
         return $this->render('Article/show.html.twig', $context);
     }
 }

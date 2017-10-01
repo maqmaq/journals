@@ -50,4 +50,9 @@
       'dsn' => 'mysql:host=mysql;dbname=journals',
     ),
   ),
+  'seeds' => 
+  array (
+    0 => 'User\\Seed::UserSeed',
+    1 => 'Article\\Seed::ArticleSeed',
+  ),
 );

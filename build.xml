@@ -44,6 +44,30 @@
             </fileset>
         </chmod>
     </target>
+    <target name="database:reseed"
+            depends="database:recreate,database:sql:rebuild,database:seed">
+    </target>
+    <target name="database:recreate">
+        <exec executable="php" passthru="true" checkreturn="true">
+            <arg value="vendor/bin/maghead"/>
+            <arg value="db" />
+            <arg value="recreate" />
+            <arg value="master" />
+        </exec>
+    </target>
+    <target name="database:sql:rebuild">
+        <exec executable="php" passthru="true" checkreturn="true">
+            <arg value="vendor/bin/maghead"/>
+            <arg value="sql" />
+            <arg value="--rebuild" />
+        </exec>
+    </target>
+    <target name="database:seed">
+        <exec executable="php" passthru="true" checkreturn="true">
+            <arg value="vendor/bin/maghead"/>
+            <arg value="seed" />
+        </exec>
+    </target>
     <target name="composer-dev" description="Installing dependencies with dev">
         <exec executable="php" passthru="true" checkreturn="true">
             <arg value="composer.phar"/>

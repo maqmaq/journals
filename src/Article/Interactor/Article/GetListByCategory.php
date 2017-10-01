@@ -14,9 +14,9 @@ class GetListByCategory
 
     /**
      * @param Category $category
-     * @return array
+     * @return mixed
      */
-    public function execute(Category $category): array
+    public function execute(Category $category)
     {
         return $category->getArticles();
     }

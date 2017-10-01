@@ -124,16 +124,19 @@ class Application
             header('HTTP/1.0 405 Method Not Allowed');
             // exception message contains allowed methods
             header('Allow: ' . $e->getMessage());
+            echo '405';
             exit;
 
         } catch (RouteNotFoundException|ObjectNotFoundException $e) {
             header('HTTP/1.0 404 Not Found');
             // not found....
+            echo '404';
             exit;
 
         } catch (RuntimeException|\Exception $e) {
             header('HTTP/1.0 500 Internal Server Error');
             // internal server error
+            echo '500';
             exit;
         }
 

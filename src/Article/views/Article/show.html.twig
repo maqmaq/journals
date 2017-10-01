@@ -15,13 +15,25 @@
         <dt>Content</dt>
         <dd>
             {% if canUserAccessArticleContent %}
-            {{ article.getContent() }}
-                {% else %}
-                    Purchase to read full version of this article. Click <a title="here" href="{{ "/articles/purchase/%s"|format(article.getId()) }}">here</a>.
+                {{ article.getContent() }}
+            {% else %}
+                Purchase to read full version of this article.
+                Click <a title="here" href="{{ "/articles/purchase/%s"|format(article.getId()) }}">here</a>.
             {% endif %}
         </dd>
 
         <dt>Price</dt>
         <dd>{{ article.getPrice() }}</dd>
+
+        <dt>Category</dt>
+        <dd>
+            {% if article.category %}
+                {{ article.category.getName() }}
+            {% else %}
+                unassigned
+            {% endif %}
+
+        </dd>
+
     </dl>
 {% endblock %}
