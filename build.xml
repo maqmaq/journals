@@ -34,15 +34,8 @@
         </exec>
     </target>
     <target name="update-dev"
-            depends="app:setup,composer-dev"
+            depends="composer-dev"
             description="Update dev version">
-    </target>
-    <target name="app:setup">
-        <chmod file="cache/twig" mode="0777">
-            <fileset dir="cache/twig">
-                <exclude name=".gitkeep/"/>
-            </fileset>
-        </chmod>
     </target>
     <target name="database:reseed"
             depends="database:recreate,database:sql:rebuild,database:seed">

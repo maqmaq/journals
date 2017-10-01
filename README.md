@@ -11,11 +11,15 @@ php phing.phar docker:build
 ```
 - Run command to start docker containers
 ```bash
-php phing.phar docker:build
+php phing.phar docker:up
 ```
 - Wait until dependencies installation is finished. You can check progress using command:
 ```bash
 docker logs -f journals-php-fpm
+```
+- (optional) Create local config using command and change it if you need it
+```
+cp config/config.local.dist.php config/config.local.php
 ```
 - Seed database using command:
 ```bash

@@ -15,9 +15,9 @@ class GetListByAuthor
 
     /**
      * @param Author $author
-     * @return array
+     * @return mixed
      */
-    public function execute(Author $author): array
+    public function execute(Author $author)
     {
         return $author->getArticles();
     }
