@@ -23,10 +23,3 @@ docker exec -it journals-php-fpm bash -c 'php phing.phar database:reseed'
 ```
 - Open [http://localhost:8081](http://localhost:8081)
 
-### Live demo
-
-Visit
-```
-http://tobecontinued.com
-```
-
